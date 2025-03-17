@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --h1: "40px";
+  --h2: "36px";
+  --h3: "32px";
+  --h4: "24px";
+  --h5: "20px";
+  --h6: "16px";
+  --nav: "14px";
+  --bodyText: "12px";
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.NavBar__Container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1388px;
+  margin-inline: auto;
+  padding-block: 8px;
+  align-items: center;
+}
+.ProfilePic--img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  aspect-ratio: 1/1;
+}
+.Profile__Container {
+  display: flex;
+  gap: 14px;
+}
+.Profile__Wrapper {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+}
+.ProfileContnet__Container {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.ProfileContent--h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+.ProfileContent--p {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+}
+.SideNavBar__bg {
+  background-color: #1b0303;
+  color: #fcfcfc;
+  min-width: 324px;
+  min-height: calc(100vh - 60px);
+  padding: 48px 32px;
+}
+.SideNavBar__list {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+.SideNavBar__item {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.SideNavBar__item .active {
+  font-weight: 700;
+}
+.SideNavBar__MenuItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.SideNavBar__SubMenuItem {
+  list-style: none;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 2rem;
+}
+.SideNavBar__Link {
+  text-decoration: none;
+  color: #fcfcfc;
+  display: block;
+}
+
+/* Drop Down Menu */
+.dropdownmenu__backgroundColor{
+  position: absolute;
+  top: 42px;
+  right: -55px;
+  padding: 12px 24px;
+  background-color: #FFFFFF;
+  box-shadow: 0.5px 0.5px 6px rgb(106, 7, 7,0.1);
+  border-radius: 4px;
+}
+.dropdownmenu__container{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 97px;
+  align-items: center;
+}
+
+/* Chart */
+.Card__bg {
+  background-color: #fcfcfc;
+  min-width: 328px;
+  border-radius: 8px;
+  box-shadow: 2px 3px 12px rgb(106, 7, 7, 0.25);
+}
+.headingContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 13px 0;
+}
+.component__heading--h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.Card__bg.small {
+  min-width: 255px;
+}
+
+/* Calendar */
+.Calendar__Container {
+  border-top: 1px solid black;
+}
+.weeks {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid black;
+}
+.week {
+  padding: 10px 9px 11px 10px;
+  border-right: 1px solid black;
+}
+.week:nth-child(7),
+.day:nth-child(7),
+.day:nth-child(14),
+.day:nth-child(21),
+.day:nth-child(28),
+.day:nth-child(35) {
+  border-right: 0;
+}
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.day {
+  padding: 2px 6px 24px 34px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+  display: flex;
+  justify-content: end;
+}
+.today {
+  border: 1px solid black;
+  color: #1b0303;
+  padding: 2px;
+  border-radius: 24px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+}
+.selected {
+  padding: 2px;
+  color: white;
+  background-color: #000060;
+  border-radius: 24px;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.recent-member-link {
+  display: flex;
+  justify-content: end;
+  padding-right: 28px;
+}
+
+/* Add & Edit Menu */
+.AddEditMenu {
+  display: flex;
+  gap: 1rem;
+  margin-top: 24px;
+  background-color: #fcfcfc;
+  box-shadow: 2px 3px 12px rgb(106, 7, 7, 0.25);
+  padding-block: 8px;
+  padding-left: 40px;
+  border-radius: 8px;
+}
+
+.payment-card__border-container {
+  border: 1px solid #1b0303;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 256px;
+}
+.payment-card__card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 116px;
+}
+.payment-card__heading--h2 {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+}
+.payment-card__card-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.payment-card__card-info-heading--h3 {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+.payment-card__card-detail-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 104px;
+}
+.payment-card__card-name-container,
+.payment-card__card-expiry-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.payment-card__card-detail-heading--h3 {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+.payment-card__card-detail-content--p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+
+.userprofile__contentcontainer {
+  display: flex;
+  gap: 32px;
+  margin-top: 16px;
+}
+.userprofile__profileimagecontainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.useProfile__profileimage--img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+.userprofile__inputcontainer {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.changepassword__container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.input__container {
+  display: flex;
+  gap: 40px;
+  /* flex-direction: column; */
+  margin-top: 32px;
+}
+.changepassword__inputcontainer {
+  display: flex;
+  gap: 121px;
+}
+.changepassword__newpasswordcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.personalinfo__container {
+  max-width: 1065px;
+  background-color: #fcfcfc;
+  border-radius: 8px;
+  box-shadow: 2px 3px 12px rgb(106, 7, 7, 0.25);
+  padding: 24px 32px;
+  transform: translate(32%, 0%);
+}
+
+/* Login Page */
+.login__container--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 120px;
+}
+.login__container {
+  border: 1px solid #1b0303;
+  border-radius: 24px;
+  padding: 36px 136px;
+  max-width: 592px;
+}
+.login__contentcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+.login__content--img {
+  width: 84px;
+  height: 82px;
+}
+.contentcontainer--h1 {
+  text-align: center;
+  font-family: "Bebas Neue", serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+.contentcontainer__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.contentcontainer__input-button {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.contentcontainer__input-remember {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.contentcontainer__input {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.contentcontainer__remember {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* User Profile */
+.profile__headcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.profile__userprofile {
+  font-family: "Roboto", sans-serif;
+  color: #1b0303;
+  text-decoration: none;
+}
+.profile__userprofile .active {
+  font-weight: 700;
+  border-bottom: 2px solid #1b0303;
+}
