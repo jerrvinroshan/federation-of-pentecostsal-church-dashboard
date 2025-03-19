@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextareaAutosize, TextField } from "@mui/material";
 import { userProfileData } from "../../../data/userProfileData";
 
 import profileImg from "../../../assets/image/profileppic.png";
@@ -8,6 +8,9 @@ export const UserProfile = () => {
   const [firstName, setFirstName] = useState(userProfileData[0].firstName);
   const [lastName, setLastName] = useState(userProfileData[0].lastName);
   const [emailId, setEmailId] = useState(userProfileData[0].emailId);
+  const [phoneNumber, setPhoneNumber] = useState(userProfileData[0].phoneNumber)
+  const [address, setAddress] = useState(userProfileData[0].address)
+  const [zone, setZone] = useState(userProfileData[0].zone)
 
   return (
     <div className="UserProfile__container">
@@ -29,36 +32,50 @@ export const UserProfile = () => {
             Upload
           </Button>
         </div>
-        <div className="userprofile__inputcontainer">
-          <TextField
-            style={{ width: "220px" }}
-            size="small"
-            label="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <TextField
-            style={{ width: "220px" }}
-            size="small"
-            label="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <TextField
-            style={{ width: "220px" }}
-            size="small"
-            label="Email Id"
-            value={emailId}
-            onChange={(e) => setEmailId(e.target.value)}
-          />
-          <TextField style={{ width: "220px" }} size="small" label="Phone No" />
-          <textarea
-            style={{ minWidth: "220px", maxWidth: "220px", overflow: "auto" }}
-            label="Address"
+        <form className="userprofile__inputcontainer">
+          <div style={{display:'flex', gap:'12px'}}>
+            <TextField
+              style={{ width: "220px" }}
+              size="small"
+              label="First Name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <TextField
+              style={{ width: "220px" }}
+              size="small"
+              label="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div style={{display:'flex', gap:'12px'}}>
+            <TextField
+              style={{ width: "220px" }}
+              size="small"
+              label="Email Id"
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
+            />
+            <TextField
+              style={{ width: "220px" }}
+              size="small"
+              label="Phone No"
+              value={phoneNumber}
+              onChange={(e)=>setPhoneNumber(e.target.value)}
+            />
+          </div>
+          <TextareaAutosize
+            minRows={4}
+            placeholder="Address"
+            style={{ minWidth: "450px",overflow: "auto" }}
+            value={address}
+            onChange={(e)=>setAddress(e.target.value)}
           />
 
-          <TextField style={{ width: "220px" }} size="small" label="Zone" />
-        </div>
+          <TextField style={{ width: "220px" }} size="small" label="Zone"            value={zone}
+            onChange={(e)=>setZone(e.target.value)} />
+        </form>
       </div>
     </div>
   );

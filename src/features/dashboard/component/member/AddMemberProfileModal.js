@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { PersonalDetails } from "../component/profile/personal-info/PersonalDetails";
-import { Qualification } from "../component/profile/personal-info/Qualification";
-import { ChurchDetails } from "../component/profile/personal-info/ChurchDetails";
-import { ChurchProperty } from "../component/profile/personal-info/ChurchProperty";
+import { PersonalDetails } from "../../../../component/profile/personal-info/PersonalDetails";
+import { Qualification } from "../../../../component/profile/personal-info/Qualification";
+import { ChurchDetails } from "../../../../component/profile/personal-info/ChurchDetails";
+import { ChurchProperty } from "../../../../component/profile/personal-info/ChurchProperty";
 
 
 const PersonalInformation = () => {
@@ -31,7 +31,7 @@ const PersonalInformation = () => {
   const handleChurchDetailClick = () => {
     setIsPersonalInformation(false);
     setIsEducationalQualification(false);
-    setIsChurchDetail(true);
+    setIsChurchDetail((prevState) => !prevState);
     setIsChurchProperty(false);
   };
 
@@ -39,19 +39,18 @@ const PersonalInformation = () => {
     setIsPersonalInformation(false);
     setIsEducationalQualification(false);
     setIsChurchDetail(false);
-    setIsChurchProperty(true);
+    setIsChurchProperty((prevState) => !prevState);
   };
   const handleClickNext = () => {
     if (isPersonalInformation) {
       setIsPersonalInformation(false);
       setIsEducationalQualification(true);
-      
     } else if (isEducationalQualification) {
-      setIsEducationalQualification(false);
       setIsChurchDetail(true);
+      setIsEducationalQualification(false);
     } else {
-      setIsChurchDetail(false);
       setIsChurchProperty(true);
+      setIsChurchDetail(false);
     }
   };
 

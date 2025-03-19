@@ -263,6 +263,8 @@
   display: flex;
   gap: 32px;
   margin-top: 16px;
+  flex-direction: column;
+  align-items: center;
 }
 .userprofile__profileimagecontainer {
   display: flex;
@@ -276,8 +278,9 @@
 }
 .userprofile__inputcontainer {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 .changepassword__container {
   display: flex;
@@ -287,12 +290,12 @@
 .input__container {
   display: flex;
   gap: 40px;
-  /* flex-direction: column; */
+  flex-direction: column;
   margin-top: 32px;
 }
 .changepassword__inputcontainer {
   display: flex;
-  gap: 121px;
+  justify-content: space-around;
 }
 .changepassword__newpasswordcontainer {
   display: flex;

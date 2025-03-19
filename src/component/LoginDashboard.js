@@ -10,7 +10,7 @@ export const LoginDashboard = () => {
   const navigate = useNavigate()
 
   const handleLogin = () => {
-    if( userName === "admin" && password === '125448Lisjijds'){
+    if( userName === "admin" && password === 'Password@1'){
       navigate('/dashboard')
     } else {
       console.log("Invalid credentials. Please try again.");

@@ -25,7 +25,10 @@ export const NavBar = () => {
                 <h2 className="ProfileContent--h2">Bosco</h2>
                 <p className="ProfileContent--p">bosco@gmail.com</p>
               </div>
-              <div style={{ position: "relative", cursor:'pointer' }} onClick={handleClick}>
+              <div
+                style={{ position: "relative", cursor: "pointer" }}
+                onClick={handleClick}
+              >
                 {isOpen ? (
                   <>
                     <DropDownMenu /> <KeyboardArrowUpIcon />

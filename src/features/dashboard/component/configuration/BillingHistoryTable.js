@@ -1,5 +1,7 @@
 import { Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import DownloadIcon from "@mui/icons-material/Download";
+import { Link } from "react-router-dom";
 
 export const BillingHistoryTable = () => {
   const columns = [
@@ -8,7 +10,16 @@ export const BillingHistoryTable = () => {
     { field: "date", headerName: "Date", width: 100 },
     { field: "amount", headerName: "Amount", width: 80 },
     { field: "status", headerName: "Status", width: 80 },
-    { field: "download", headerName: " ", width: 550 },
+    {
+      field: "download",
+      headerName: "Action",
+      width: 550,
+      renderCell: () => (
+        <Link style={{display:'flex', alignItems:'center', gap:'12px'}}>
+          <DownloadIcon style={{fontSize:'20px'}}/> Download
+        </Link>
+      ),
+    },
   ];
 
   const rows = [
@@ -27,7 +38,7 @@ export const BillingHistoryTable = () => {
       description: "",
       date: "",
       amount: "",
-      status: "",
+      status: "Failed",
       download: "",
     },
     {

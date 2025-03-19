@@ -10,12 +10,12 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
 
   const handleUserProfileClick = (e) => {
     e.stopPropagation();
-    setIsUserProfile((prevState) => !prevState);
+    setIsUserProfile(true);
     setISetting(false);
   };
   const handleSettingClick = (e) => {
     e.stopPropagation();
-    setISetting((prevState) => !prevState);
+    setISetting(true);
     setIsUserProfile(false);
   };
   const handleModalClick = (e) => {
@@ -28,7 +28,7 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 1065,
+    width: 600,
     bgcolor: "background.paper",
     borderRadius: 2,
     boxShadow: 24,
@@ -64,7 +64,7 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
                 borderBottom: isSetting ? "2px solid #1B0303" : "none",
               }}
             >
-              Setting
+              Settings
             </NavLink>
           </div>
         </div>
@@ -73,7 +73,7 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
             marginTop: "28px",
             display: "flex",
             flexDirection: "column",
-            gap: "56px",
+            gap: "24px",
           }}
         >
           {isUserProfile && <UserProfile />}
@@ -81,22 +81,10 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
           <div
             style={{
               display: "flex",
-              gap: "52px",
-              justifyContent: "end",
-              marginTop: "18px",
+              justifyContent: "center",
+              marginTop: "0px",
             }}
           >
-            <Button
-              style={{
-                border: "1px solid #1B0303",
-                padding: "8px 28px",
-                backgroundColor: "transparent",
-                borderRadius: "4px",
-                color: "#1B0303",
-              }}
-            >
-              Edit
-            </Button>
             <Button
               style={{
                 border: "none",
@@ -106,7 +94,7 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
                 borderRadius: "4px",
               }}
             >
-              Save
+              Update
             </Button>
           </div>
         </div>

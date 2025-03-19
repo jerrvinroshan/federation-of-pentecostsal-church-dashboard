@@ -1,5 +1,3 @@
-import { NavBar } from "../component/NavBar";
-import { SideNavBar } from "../component/SideNavBar";
 import { MemberBarChart } from "../features/dashboard/component/chart/MemberBarChart";
 import { ChartPie } from "../features/dashboard/component/chart/PieChart";
 import { Donation } from "../features/dashboard/component/Donation";

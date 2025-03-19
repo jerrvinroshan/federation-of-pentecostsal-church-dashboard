@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
 
-export const AddMemberModal = ({
-  open,
+export const AddMemberModal = ({  open,
   handleClose,
   handleAddMember,
   handleSaveEdit,
@@ -33,9 +32,16 @@ export const AddMemberModal = ({
   const handleSubmit = () => {
     if (name && address && email && phone && zone) {
       if (member) {
-        handleSaveEdit({ ...member, name: name, address: address, email: email, phone: phone,  zone: zone, });
+        handleSaveEdit({
+          ...member,
+          name: name,
+          address: address,
+          email: email,
+          phone: phone,
+          zone: zone,
+        });
       } else {
-        handleAddMember(name, address,address,email, phone, zone);
+        handleAddMember(name, address, address, email, phone, zone);
       }
       setName("");
       setAddress("");
@@ -65,50 +71,50 @@ export const AddMemberModal = ({
           gap: "12px",
         }}
       >
-       <h2>{zone ? "Edit Member" : "Add New Member"}</h2>
-        <TextField
-          fullWidth
-          label="Name"
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Address"
-          variant="outlined"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-                <TextField
-          fullWidth
-          label="Email"
-          variant="outlined"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Phone"
-          variant="outlined"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Zone"
-          variant="outlined"
-          value={zone}
-          onChange={(e) => setZone(e.target.value)}
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleSubmit}
-          sx={{ mt: 2 }}
+        <h2>{zone ? "Edit Member" : "Add New Member"}</h2>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column", gap: "12px" }}
         >
-           {member ? "Save Changes" : "Add Member"}
-        </Button>
+          <TextField
+            fullWidth
+            label="Name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            label="Address"
+            variant="outlined"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            label="Email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            label="Phone"
+            variant="outlined"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            label="Zone"
+            variant="outlined"
+            value={zone}
+            onChange={(e) => setZone(e.target.value)}
+          />
+          <Button fullWidth variant="contained" type="submit" sx={{ mt: 2 }}>
+            {member ? "Save Changes" : "Add Member"}
+          </Button>
+        </form>
       </Box>
     </Modal>
   );
