@@ -42,16 +42,17 @@ const PersonalInformation = () => {
     setIsChurchProperty(true);
   };
   const handleClickNext = () => {
+    //save then move to next tab
+    
     if (isPersonalInformation) {
       setIsPersonalInformation(false);
       setIsEducationalQualification(true);
-      
     } else if (isEducationalQualification) {
-      setIsEducationalQualification(false);
       setIsChurchDetail(true);
+      setIsEducationalQualification(false);
     } else {
-      setIsChurchDetail(false);
       setIsChurchProperty(true);
+      setIsChurchDetail(false);
     }
   };
 

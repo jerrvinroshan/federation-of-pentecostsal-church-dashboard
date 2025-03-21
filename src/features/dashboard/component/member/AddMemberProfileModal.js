@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { PersonalDetails } from "../../../../component/profile/personal-info/PersonalDetails";
@@ -6,8 +6,7 @@ import { Qualification } from "../../../../component/profile/personal-info/Quali
 import { ChurchDetails } from "../../../../component/profile/personal-info/ChurchDetails";
 import { ChurchProperty } from "../../../../component/profile/personal-info/ChurchProperty";
 
-
-const PersonalInformation = () => {
+const AddMemberProfileModal = ({ open, handleClose }) => {
   const [isPersonalInformation, setIsPersonalInformation] = useState(true);
   const [isEducationalQualification, setIsEducationalQualification] =
     useState(false);
@@ -68,106 +67,129 @@ const PersonalInformation = () => {
   };
 
   return (
-    <div className="personalinfo__container">
-      <div className="profile__headcontainer">
-        <h1>Personal Details</h1>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <NavLink
-            onClick={handlePersonalInfoClick}
-            className="profile__userprofile"
-            style={{
-              fontWeight: isPersonalInformation ? "700" : "400",
-              borderBottom: isPersonalInformation
-                ? "2px solid #1B0303"
-                : "none",
-            }}
-          >
-            Personal Information
-          </NavLink>
-          <NavLink
-            onClick={handleEducationalClick}
-            className="profile__userprofile"
-            style={{
-              fontWeight: isEducationalQualification ? "700" : "400",
-              borderBottom: isEducationalQualification
-                ? "2px solid #1B0303"
-                : "none",
-            }}
-          >
-            Educational Qualification
-          </NavLink>
-          <NavLink
-            onClick={handleChurchDetailClick}
-            className="profile__userprofile"
-            style={{
-              fontWeight: isChurchDetail ? "700" : "400",
-              borderBottom: isChurchDetail ? "2px solid #1B0303" : "none",
-            }}
-          >
-            Church Detail
-          </NavLink>
-          <NavLink
-            onClick={handleChurchPropertyClick}
-            className="profile__userprofile"
-            style={{
-              fontWeight: isChurchProperty ? "700" : "400",
-              borderBottom: isChurchProperty ? "2px solid #1B0303" : "none",
-            }}
-          >
-            Church Property
-          </NavLink>
-        </div>
-      </div>
-      <div
+    <Modal
+      style={{ backgroundColor: "#fcfcfc",}}
+      open={open}
+      onClose={handleClose}
+      className="personalinfo__container"
+    >
+      <Box
         style={{
-          marginTop: "28px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-28%, -50%)",
+          width: 1065,
+          backgroundColor: "white",
+          boxShadow: 24,
+          padding: "24px",
+          border: "none",
+          borderRadius: "8px",
           display: "flex",
           flexDirection: "column",
-          gap: "56px",
+          gap: "12px",
         }}
       >
-        {isPersonalInformation && <PersonalDetails />}
-        {isEducationalQualification && <Qualification />}
-        {isChurchDetail && <ChurchDetails />}
-        {isChurchProperty && <ChurchProperty />}
-
+        <div className="profile__headcontainer">
+          <h1>Personal Details</h1>
+          <div style={{ display: "flex", gap: "16px" }}>
+            <NavLink
+              onClick={handlePersonalInfoClick}
+              className="profile__userprofile"
+              style={{
+                fontWeight: isPersonalInformation ? "700" : "400",
+                borderBottom: isPersonalInformation
+                  ? "2px solid #1B0303"
+                  : "none",
+              }}
+            >
+              Personal Information
+            </NavLink>
+            <NavLink
+              onClick={handleEducationalClick}
+              className="profile__userprofile"
+              style={{
+                fontWeight: isEducationalQualification ? "700" : "400",
+                borderBottom: isEducationalQualification
+                  ? "2px solid #1B0303"
+                  : "none",
+              }}
+            >
+              Educational Qualification
+            </NavLink>
+            <NavLink
+              onClick={handleChurchDetailClick}
+              className="profile__userprofile"
+              style={{
+                fontWeight: isChurchDetail ? "700" : "400",
+                borderBottom: isChurchDetail ? "2px solid #1B0303" : "none",
+              }}
+            >
+              Church Detail
+            </NavLink>
+            <NavLink
+              onClick={handleChurchPropertyClick}
+              className="profile__userprofile"
+              style={{
+                fontWeight: isChurchProperty ? "700" : "400",
+                borderBottom: isChurchProperty ? "2px solid #1B0303" : "none",
+              }}
+            >
+              Church Property
+            </NavLink>
+          </div>
+        </div>
         <div
           style={{
+            marginTop: "28px",
             display: "flex",
-            gap: "52px",
-            justifyContent: isPersonalInformation ? "end" : "space-between",
-            marginTop: "18px",
+            flexDirection: "column",
+            gap: "56px",
           }}
         >
-          <Button
+          {isPersonalInformation && <PersonalDetails onSubmit={handleClickNext}/>}
+          {isEducationalQualification && <Qualification />}
+          {isChurchDetail && <ChurchDetails />}
+          {isChurchProperty && <ChurchProperty />}
+
+          <div
             style={{
-              border: "none",
-              padding: "8px 28px",
-              color: "yellow",
-              backgroundColor: "#1B0303",
-              borderRadius: "4px",
-              display: isPersonalInformation ? "none" : "block",
+              display: "flex",
+              gap: "52px",
+              justifyContent: isPersonalInformation ? "end" : "space-between",
+              marginTop: "18px",
             }}
-            onClick={handleClickBack}
           >
-            Back
-          </Button>
-          <Button
-            style={{
-              border: "none",
-              padding: "8px 28px",
-              color: "yellow",
-              backgroundColor: "#1B0303",
-              borderRadius: "4px",
-            }}
-            onClick={handleClickNext}
-          >
-            {isChurchProperty ? "Sumbit" : "Next"}
-          </Button>
+            <Button
+              style={{
+                border: "none",
+                padding: "8px 28px",
+                color: "yellow",
+                backgroundColor: "#1B0303",
+                borderRadius: "4px",
+                display: isPersonalInformation ? "none" : "block",
+              }}
+              onClick={handleClickBack}
+            >
+              Back
+            </Button>
+            <Button
+              style={{
+                border: "none",
+                padding: "8px 28px",
+                color: "yellow",
+                backgroundColor: "#1B0303",
+                borderRadius: "4px",
+              }}
+              onClick={handleClickNext}
+            >
+              {isChurchProperty ? "Sumbit" : "Next"}
+            </Button>
+          </div>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Modal>
   );
 };
 
-export default PersonalInformation;
+export default AddMemberProfileModal;

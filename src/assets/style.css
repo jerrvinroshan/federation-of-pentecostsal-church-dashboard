@@ -15,6 +15,16 @@
   box-sizing: border-box;
 }
 
+/* Login Page */
+.input-error-container{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.login-error{
+  color: red;
+}
+
 .NavBar__Container {
   display: flex;
   justify-content: space-between;
@@ -95,16 +105,16 @@
 }
 
 /* Drop Down Menu */
-.dropdownmenu__backgroundColor{
+.dropdownmenu__backgroundColor {
   position: absolute;
   top: 42px;
   right: -55px;
   padding: 12px 24px;
-  background-color: #FFFFFF;
-  box-shadow: 0.5px 0.5px 6px rgb(106, 7, 7,0.1);
+  background-color: #ffffff;
+  box-shadow: 0.5px 0.5px 6px rgb(106, 7, 7, 0.1);
   border-radius: 4px;
 }
-.dropdownmenu__container{
+.dropdownmenu__container {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -309,7 +319,10 @@
   border-radius: 8px;
   box-shadow: 2px 3px 12px rgb(106, 7, 7, 0.25);
   padding: 24px 32px;
-  transform: translate(32%, 0%);
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: "translate(-28%, -50%)";
 }
 
 /* Login Page */

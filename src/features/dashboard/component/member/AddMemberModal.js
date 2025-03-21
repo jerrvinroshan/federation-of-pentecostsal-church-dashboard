@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Modal, Box, TextField, Button } from "@mui/material";
 
-export const AddMemberModal = ({  open,
+export const AddMemberModal = ({
+  open,
   handleClose,
   handleAddMember,
   handleSaveEdit,

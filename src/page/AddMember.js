@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AddMemberTable } from "../features/dashboard/component/member/AddMemberTable";
 import { AddMenuMember } from "../features/dashboard/component/member/AddMenuMember";
 import { memberData } from "../features/dashboard/data/memberData/memberData";
-import { AddMemberModal } from "../features/dashboard/component/member/AddMemberModal";
+import AddMemberProfileModal from "../features/dashboard/component/member/AddMemberProfileModal";
 
 const AddMember = () => {
   const [members, setMembers] = useState(memberData);
@@ -58,13 +58,11 @@ const AddMember = () => {
           handleEdit={handleEditMember}
           handleDelete={handleDeleteMember}
         />
-        <AddMemberModal
-          open={openModal}
+        <AddMemberProfileModal open={openModal}
           handleClose={handleCloseModal}
           handleAddMember={handleAddMember}
           handleSaveEdit={handleSaveEdit}
-          member={currentMember}
-        />
+          member={currentMember}/>
       </div>
     </div>
   );

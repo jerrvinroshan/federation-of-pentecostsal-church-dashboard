@@ -16,6 +16,7 @@ const AddZone = () => {
   const handleCloseModal = () => {
     setOpenModal(false);
     setCurrentZone(null);
+    
   };
 
   const handleAddZone = (newZoneName, description) => {
