@@ -8,9 +8,11 @@ export const UserProfile = () => {
   const [firstName, setFirstName] = useState(userProfileData[0].firstName);
   const [lastName, setLastName] = useState(userProfileData[0].lastName);
   const [emailId, setEmailId] = useState(userProfileData[0].emailId);
-  const [phoneNumber, setPhoneNumber] = useState(userProfileData[0].phoneNumber)
-  const [address, setAddress] = useState(userProfileData[0].address)
-  const [zone, setZone] = useState(userProfileData[0].zone)
+  const [phoneNumber, setPhoneNumber] = useState(
+    userProfileData[0].phoneNumber
+  );
+  const [address, setAddress] = useState(userProfileData[0].address);
+  const [zone, setZone] = useState(userProfileData[0].zone);
 
   return (
     <div className="UserProfile__container">
@@ -33,7 +35,7 @@ export const UserProfile = () => {
           </Button>
         </div>
         <form className="userprofile__inputcontainer">
-          <div style={{display:'flex', gap:'12px'}}>
+          <div style={{ display: "flex", gap: "12px" }}>
             <TextField
               style={{ width: "220px" }}
               size="small"
@@ -49,7 +51,7 @@ export const UserProfile = () => {
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-          <div style={{display:'flex', gap:'12px'}}>
+          <div style={{ display: "flex", gap: "12px" }}>
             <TextField
               style={{ width: "220px" }}
               size="small"
@@ -62,19 +64,24 @@ export const UserProfile = () => {
               size="small"
               label="Phone No"
               value={phoneNumber}
-              onChange={(e)=>setPhoneNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
           <TextareaAutosize
             minRows={4}
             placeholder="Address"
-            style={{ minWidth: "450px",overflow: "auto" }}
+            style={{ minWidth: "450px", overflow: "auto" }}
             value={address}
-            onChange={(e)=>setAddress(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
           />
 
-          <TextField style={{ width: "220px" }} size="small" label="Zone"            value={zone}
-            onChange={(e)=>setZone(e.target.value)} />
+          <TextField
+            style={{ width: "220px" }}
+            size="small"
+            label="Zone"
+            value={zone}
+            onChange={(e) => setZone(e.target.value)}
+          />
         </form>
       </div>
     </div>

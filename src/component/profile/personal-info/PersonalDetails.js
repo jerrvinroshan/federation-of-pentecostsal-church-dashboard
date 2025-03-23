@@ -265,7 +265,7 @@ export const PersonalDetails = () => {
           />
         </div>
       </div>
-      <button type="submit">Next</button>
+      {/* <button type="submit">Next</button> */}
     </form>
   );
 };
