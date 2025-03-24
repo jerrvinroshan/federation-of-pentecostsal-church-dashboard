@@ -73,7 +73,7 @@ export const LoginDashboard = () => {
                         onChange={handleChange}
                         value={userName}
                       />
-                      {error.userName && <div className="login-error">{error.userName}</div>}
+                      {error.userName && <div className="error">{error.userName}</div>}
                     </div>
                     <div className="input-error-container">
                     <TextField

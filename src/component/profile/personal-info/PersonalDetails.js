@@ -1,95 +1,9 @@
-import {
-  FormControl,
-  TextField,
-  Select,
-  InputLabel,
-  MenuItem,
-} from "@mui/material";
-import { useState } from "react";
-import * as Yup from "yup";
+import { FormCustomSelectField, FormCustomTextField } from "./FormCustomField";
+import { Field } from "formik";
 
-export const PersonalDetails = () => {
-  const [personalData, setPersonalData] = useState({
-    pastorName: "",
-    pastorDOB: "",
-    fatherName: "",
-    motherName: "",
-    nativePlace: "",
-    nativeDistrict: "",
-    nativeState: "",
-    contactNo: "",
-    emergencyContactNo: "",
-    emailId: "",
-    matrialStatus: "",
-    wifeName: "",
-    pastorWifeDOB: "",
-    firstChildName: "",
-    secondChildName: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPersonalData({
-      ...personalData,
-      [name]: value,
-    });
-  };
-  const personalValidation = Yup.object({
-    pastorName: Yup.string()
-      .required("Pastor Name is Required")
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-    pastorDOB: Yup.string().required("Pastor Date of Birth is Required"),
-    fatherName: Yup.string()
-      .required("Pastor Father Name is Required")
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-    motherName: Yup.string()
-      .required("Pastor Mother Name is Required")
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-    nativePlace: Yup.string().required("Native Place is Required"),
-    nativeDistrict: Yup.string().required("Native District is Required"),
-    nativeState: Yup.string().required("Native State is Required"),
-    contactNo: Yup.string().required("Contact No is Required"),
-    emergencyContactNo: Yup.string().required(
-      "Emergency Contact No is Required"
-    ),
-    emailId: Yup.string()
-      .required("Email Id is Required")
-      .email("Enter valid Email Id"),
-    matrialStatus: Yup.string().required("Matrial Status is Required"),
-    wifeName: Yup.string()
-      .required("Pastor Wife Name is Required")
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-    pastorWifeDOB: Yup.string().required("DOB is Required"),
-    firstChildName: Yup.string()
-      .required("Pastor Name is Required")
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-    secondChildName: Yup.string()
-      .min(4, "Minimum 4 letters")
-      .max(50, "Maximum 50 letters"),
-  });
-  const [error, setError] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await personalValidation.validate(personalData, { abortEarly: false });
-    } catch (error) {
-      const newError = {};
-
-      error.inner.forEach((err) => {
-        newError[err.path] = err.message;
-      });
-      setError(newError);
-      console.log(newError);
-    }
-  };
-
+export const PersonalDetails = ({ values, handleChange, errors }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
       <div>
         <h2>Personal Details</h2>
         <div
@@ -101,111 +15,134 @@ export const PersonalDetails = () => {
           }}
         >
           <div>
-            <TextField
-              size="small"
-              style={{ width: "220px" }}
+            <Field
               label="Pastor Name"
               name="pastorName"
-              value={personalData.pastorName}
+              component={FormCustomTextField}
+              value={values.pastorName}
               onChange={handleChange}
             />
-            {error.pastorName && <div>{error.pastorName}</div>}
+            {errors.pastorName && (
+              <div className="error">{errors.pastorName}</div>
+            )}
           </div>
           <div>
-            <TextField
-              size="small"
-              style={{ width: "220px" }}
+            <Field
               label="DOB"
               name="pastorDOB"
-              value={personalData.pastorDOB}
+              component={FormCustomTextField}
+              value={values.pastorDOB}
               onChange={handleChange}
             />
-            {error.pastorDOB && <div>{error.pastorDOB}</div>}
+            {errors.pastorDOB && (
+              <div className="error">{errors.pastorDOB}</div>
+            )}
           </div>
           <div>
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Father Name"
-            name="fatherName"
-            value={personalData.fatherName}
-            onChange={handleChange}
-          />{error.fatherName && <div>{error.fatherName}</div>}</div>
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Mother Name"
-            name="motherName"
-            value={personalData.motherName}
-            onChange={handleChange}
-          />
-
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Native Place</InputLabel>
-            <Select
+            <Field
+              label="Father Name"
+              name="fatherName"
+              component={FormCustomTextField}
+              value={values.fatherName}
+              onChange={handleChange}
+            />
+            {errors.fatherName && (
+              <div className="error">{errors.fatherName}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Mother Name"
+              name="motherName"
+              component={FormCustomTextField}
+              value={values.motherName}
+              onChange={handleChange}
+            />
+            {errors.motherName && (
+              <div className="error">{errors.motherName}</div>
+            )}
+          </div>
+          <div>
+            <Field
               label="Native Place"
               name="nativePlace"
-              value={personalData.nativePlace}
-              onChange={handleChange}
-            >
-              <MenuItem value="Colcacel">Colcacel</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Native District</InputLabel>
-            <Select
+              component={FormCustomSelectField}
+              option={[
+                { label: "Colcacel", value: "Colcacel" },
+                { label: "Nagercoil", value: "Nagercoil" },
+                { label: "Marthadam", value: "Marthadam" },
+                { label: "Kochin", value: "Kochin" },
+              ]}
+            />
+            {errors.nativePlace && (
+              <div className="error">{errors.nativePlace}</div>
+            )}
+          </div>
+          <div>
+            <Field
               label="Native District"
               name="nativeDistrict"
-              value={personalData.nativeDistrict}
-              onChange={handleChange}
-            >
-              <MenuItem value="Colcacel">Colcacel</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Native State</InputLabel>
-            <Select
+              component={FormCustomSelectField}
+              option={[
+                { label: "Colcacel", value: "Colcacel" },
+                { label: "Nagercoil", value: "Nagercoil" },
+                { label: "Marthadam", value: "Marthadam" },
+                { label: "Kochin", value: "Kochin" },
+              ]}
+            />
+            {errors.nativeDistrict && (
+              <div className="error">{errors.nativeDistrict}</div>
+            )}
+          </div>
+          <div>
+            <Field
               label="Native State"
               name="nativeState"
-              value={personalData.nativeState}
+              component={FormCustomSelectField}
+              option={[
+                { label: "Tamil Nadu", value: "Tamil Nadu" },
+                { label: "Kerala", value: "Kerala" },
+                { label: "Mumbai", value: "Mumbai" },
+              ]}
+            />
+            {errors.nativeState && (
+              <div className="error">{errors.nativeState}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Contact No"
+              name="contactNo"
+              component={FormCustomTextField}
+              value={values.contactNo}
               onChange={handleChange}
-            >
-              <MenuItem value="Tamil Nadu">Tamil Nadu</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-              <MenuItem>Colcacel</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Contact No"
-            name="contactNo"
-            value={personalData.contactNo}
-            onChange={handleChange}
-          />
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Emergency Contact No"
-            name="emergencyContactNo"
-            value={personalData.emergencyContactNo}
-            onChange={handleChange}
-          />
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Email Id"
-            name="emailId"
-            value={personalData.emailId}
-            onChange={handleChange}
-          />
+            />
+            {errors.contactNo && (
+              <div className="error">{errors.contactNo}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Emergency Contact No"
+              name="emergencyContactNo"
+              component={FormCustomTextField}
+              value={values.emergencyContactNo}
+              onChange={handleChange}
+            />
+            {errors.emergencyContactNo && (
+              <div className="error">{errors.emergencyContactNo}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Email Id"
+              name="emailId"
+              component={FormCustomTextField}
+              value={values.emailId}
+              onChange={handleChange}
+            />
+            {errors.emailId && <div className="error">{errors.emailId}</div>}
+          </div>
         </div>
       </div>
       <div style={{ marginTop: "32px" }}>
@@ -218,54 +155,64 @@ export const PersonalDetails = () => {
             marginTop: "36px",
           }}
         >
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Matrial Status</InputLabel>
-            <Select
-              label="Matrial Status"
-              name="matrialStatus"
-              value={personalData.matrialStatus}
+          <div>
+            <Field
+              label="Martial Status"
+              name="martialStatus"
+              component={FormCustomSelectField}
+              option={[
+                { label: "Single", value: "Single" },
+                { label: "Married", value: "Married" },
+              ]}
+            />
+            {errors.martialStatus && (
+              <div className="error">{errors.martialStatus}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Wife Name"
+              name="wifeName"
+              component={FormCustomTextField}
+              value={values.wifeName}
               onChange={handleChange}
-            >
-              <MenuItem value="Single">Single</MenuItem>
-              <MenuItem value="Married">Married</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="Wife Name"
-            name="wifeName"
-            value={personalData.wifeName}
-            onChange={handleChange}
-          />
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="DOB"
-            name="pastorWifeDOB"
-            value={personalData.pastorWifeDOB}
-            onChange={handleChange}
-          />
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
-            label="First Child Name"
-            name="firstChildName"
-            value={personalData.firstChildName}
-            onChange={handleChange}
-          />
-          <TextField
-            size="small"
-            style={{ width: "220px" }}
+            />
+            {errors.wifeName && <div className="error">{errors.wifeName}</div>}
+          </div>
+          <div>
+            <Field
+              label="DOB"
+              name="pastorWifeDOB"
+              component={FormCustomTextField}
+              value={values.pastorWifeDOB}
+              onChange={handleChange}
+            />
+            {errors.pastorWifeDOB && (
+              <div className="error">{errors.pastorWifeDOB}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="First Child Name"
+              name="firstChildName"
+              component={FormCustomTextField}
+              value={values.firstChildName}
+              onChange={handleChange}
+            />
+            {errors.firstChildName && (
+              <div className="error">{errors.firstChildName}</div>
+            )}
+          </div>
+          <Field
             label="Second Child Name"
             name="secondChildName"
-            value={personalData.secondChildName}
+            component={FormCustomTextField}
+            value={values.secondChildName}
             onChange={handleChange}
           />
         </div>
       </div>
       {/* <button type="submit">Next</button> */}
-    </form>
+    </div>
   );
 };

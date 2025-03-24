@@ -1,6 +1,7 @@
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Field } from "formik";
+import { FormCustomSelectField, FormCustomTextField } from "./FormCustomField";
 
-export const Qualification = () => {
+export const Qualification = ({ values, handleChange, errors }) => {
   return (
     <div>
       <div>
@@ -13,15 +14,56 @@ export const Qualification = () => {
             marginTop: "36px",
           }}
         >
-          <TextField size="small" label="Degree" />
-          <TextField size="small" label="Institute" />
-          <TextField size="small" label="Place" />
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Year of Passing</InputLabel>
-          <Select label="Year of Passing">
-            <MenuItem>1972</MenuItem>
-          </Select>
-          </FormControl>
+          <div>
+            <Field
+              label="Degree"
+              name="collegeDegree"
+              component={FormCustomTextField}
+              value={values.collegeDegree}
+              onChange={handleChange}
+            />
+            {errors.collegeDegree && (
+              <div className="error">{errors.collegeDegree}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Institute"
+              name="collegeInstitute"
+              component={FormCustomTextField}
+              value={values.collegeInstitute}
+              onChange={handleChange}
+            />
+            {errors.collegeInstitute && (
+              <div className="error">{errors.collegeInstitute}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Place"
+              name="collegePlace"
+              component={FormCustomTextField}
+              value={values.collegePlace}
+              onChange={handleChange}
+            />
+            {errors.collegePlace && (
+              <div className="error">{errors.collegePlace}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Year of Passing"
+              name="collegeYearOfPassing"
+              component={FormCustomSelectField}
+              option={[
+                { label: "1976", value: "1976" },
+                { label: "1976", value: "1976" },
+              ]}
+            />
+            {errors.collegeYearOfPassing && (
+              <div className="error">{errors.collegeYearOfPassing}</div>
+            )}
+          </div>
         </div>
       </div>
       <div style={{ marginTop: "32px" }}>
@@ -34,15 +76,56 @@ export const Qualification = () => {
             marginTop: "36px",
           }}
         >
-          <TextField size="small" label="Degree" />
-          <TextField size="small" label="Institute" />
-          <TextField size="small" label="Place" />
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Year of Passing</InputLabel>
-          <Select label="Year of Passing">
-            <MenuItem>1972</MenuItem>
-          </Select>
-          </FormControl>
+          <div>
+            <Field
+              label="Degree"
+              name="theologicalDegree"
+              component={FormCustomTextField}
+              value={values.theologicalDegree}
+              onChange={handleChange}
+            />
+            {errors.theologicalDegree && (
+              <div className="error">{errors.theologicalDegree}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Institute"
+              name="theologicalInstitute"
+              component={FormCustomTextField}
+              value={values.theologicalInstitute}
+              onChange={handleChange}
+            />
+            {errors.theologicalInstitute && (
+              <div className="error">{errors.theologicalInstitute}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Place"
+              name="theologicalPlace"
+              component={FormCustomTextField}
+              value={values.theologicalPlace}
+              onChange={handleChange}
+            />
+            {errors.theologicalPlace && (
+              <div className="error">{errors.theologicalPlace}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Year of Passing"
+              name="theologicalYearOfPassing"
+              component={FormCustomSelectField}
+              option={[
+                { label: "1976", value: "1976" },
+                { label: "1976", value: "1976" },
+              ]}
+            />
+            {errors.theologicalYearOfPassing && (
+              <div className="error">{errors.theologicalYearOfPassing}</div>
+            )}
+          </div>
         </div>
       </div>
       <div style={{ marginTop: "32px" }}>
@@ -55,16 +138,70 @@ export const Qualification = () => {
             marginTop: "36px",
           }}
         >
-          <TextField size="small" label="Degree" />
-          <TextField size="small" label="Institute" />
-          <TextField size="small" label="Place" />
-          <TextField size="small" label="Date" />
-          <FormControl size="small" style={{ width: 220 }}>
-            <InputLabel>Ministry Starting Date</InputLabel>
-          <Select label="Ministry Starting Date">
-            <MenuItem>1972</MenuItem>
-          </Select>
-          </FormControl>
+          <div>
+            <Field
+              label="Degree"
+              name="ordinationDegree"
+              component={FormCustomTextField}
+              value={values.ordinationDegree}
+              onChange={handleChange}
+            />
+            {errors.ordinationDegree && (
+              <div className="error">{errors.ordinationDegree}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Institute"
+              name="ordinationInstitute"
+              component={FormCustomTextField}
+              value={values.ordinationInstitute}
+              onChange={handleChange}
+            />
+            {errors.ordinationInstitute && (
+              <div className="error">{errors.ordinationInstitute}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Place"
+              name="ordinationPlace"
+              component={FormCustomTextField}
+              value={values.ordinationPlace}
+              onChange={handleChange}
+            />
+            {errors.ordinationPlace && (
+              <div className="error">{errors.ordinationPlace}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Date"
+              name="ordinationDate"
+              component={FormCustomTextField}
+              value={values.ordinationDate}
+              onChange={handleChange}
+            />
+            {errors.ordinationDate && (
+              <div className="error">{errors.ordinationDate}</div>
+            )}
+          </div>
+          <div>
+            <Field
+              label="Ministry Starting Date"
+              name="ordinationMinistryStartingDate"
+              component={FormCustomSelectField}
+              option={[
+                { label: "1976", value: "1976" },
+                { label: "1976", value: "1976" },
+              ]}
+            />
+            {errors.ordinationMinistryStartingDate && (
+              <div className="error">
+                {errors.ordinationMinistryStartingDate}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
