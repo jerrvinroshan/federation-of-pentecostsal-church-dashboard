@@ -1,4 +1,8 @@
-import { FormCustomTextField } from "./FormCustomField";
+import dayjs from "dayjs";
+import {
+  FormCustomDatePickerField,
+  FormCustomTextField,
+} from "./FormCustomField";
 import { Field } from "formik";
 
 export const ChurchProperty = ({ values, handleChange, errors }) => {
@@ -26,21 +30,22 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
                   value={values.ownerName}
                   onChange={handleChange}
                 />
-                {errors.ownerName && (
+                {/* {errors.ownerName && (
                   <div className="error">{errors.ownerName}</div>
-                )}
+                )} */}
               </div>
               <div>
                 <Field
                   label="Register Date"
                   name="registerDate"
-                  component={FormCustomTextField}
-                  value={values.registerDate}
+                  component={FormCustomDatePickerField}
+                  value={dayjs(values.registerDate)}
                   onChange={handleChange}
+                  format="DD/MM/YYYY"
                 />
-                {errors.registerDate && (
+                {/* {errors.registerDate && (
                   <div className="error">{errors.registerDate}</div>
-                )}
+                )} */}
               </div>
               <div>
                 <Field
@@ -50,9 +55,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
                   value={values.ownLegalIssues}
                   onChange={handleChange}
                 />
-                {errors.ownLegalIssues && (
+                {/* {errors.ownLegalIssues && (
                   <div className="error">{errors.ownLegalIssues}</div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -75,21 +80,22 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
                   value={values.rentalownerName}
                   onChange={handleChange}
                 />
-                {errors.rentalownerName && (
+                {/* {errors.rentalownerName && (
                   <div className="error">{errors.rentalownerName}</div>
-                )}
+                )} */}
               </div>
               <div>
                 <Field
                   label="Register Date"
                   name="rentalRegisterDate"
-                  component={FormCustomTextField}
-                  value={values.rentalRegisterDate}
+                  component={FormCustomDatePickerField}
+                  value={dayjs(values.rentalRegisterDate)}
                   onChange={handleChange}
+                  format="DD/MM/YYYY"
                 />
-                {errors.rentalRegisterDate && (
+                {/* {errors.rentalRegisterDate && (
                   <div className="error">{errors.rentalRegisterDate}</div>
-                )}
+                )} */}
               </div>
               <div>
                 <Field
@@ -99,9 +105,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
                   value={values.rentalLegalIssues}
                   onChange={handleChange}
                 />
-                {errors.rentalLegalIssues && (
+                {/* {errors.rentalLegalIssues && (
                   <div className="error">{errors.rentalLegalIssues}</div>
-                )}
+                )} */}
               </div>
             </div>
           </div>
@@ -126,9 +132,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactChurchName}
               onChange={handleChange}
             />
-            {errors.contactChurchName && (
+            {/* {errors.contactChurchName && (
               <div className="error">{errors.contactChurchName}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -138,9 +144,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactDoorNo}
               onChange={handleChange}
             />
-            {errors.contactDoorNo && (
+            {/* {errors.contactDoorNo && (
               <div className="error">{errors.contactDoorNo}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -150,9 +156,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.conatStreetName}
               onChange={handleChange}
             />
-            {errors.conatStreetName && (
+            {/* {errors.conatStreetName && (
               <div className="error">{errors.conatStreetName}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -162,9 +168,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactPanchayat}
               onChange={handleChange}
             />
-            {errors.contactPanchayat && (
+            {/* {errors.contactPanchayat && (
               <div className="error">{errors.contactPanchayat}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -174,9 +180,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactVillage}
               onChange={handleChange}
             />
-            {errors.contactVillage && (
+            {/* {errors.contactVillage && (
               <div className="error">{errors.contactVillage}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -186,9 +192,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactThaluk}
               onChange={handleChange}
             />
-            {errors.contactThaluk && (
+            {/* {errors.contactThaluk && (
               <div className="error">{errors.contactThaluk}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -198,9 +204,9 @@ export const ChurchProperty = ({ values, handleChange, errors }) => {
               value={values.contactDistrict}
               onChange={handleChange}
             />
-            {errors.contactDistrict && (
+            {/* {errors.contactDistrict && (
               <div className="error">{errors.contactDistrict}</div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

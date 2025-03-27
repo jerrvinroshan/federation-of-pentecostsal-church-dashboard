@@ -34,7 +34,6 @@ const AddMemberProfileModal = ({ open, handleClose }) => {
     if (Object.keys(errors).length === 0) {
       alert("finished", values);
     } else {
-      alert("Found Error");
       console.log("Validation failed, stay on current step:", errors);
     }
   };
@@ -116,7 +115,7 @@ const AddMemberProfileModal = ({ open, handleClose }) => {
             contactNo: "",
             emergencyContactNo: "",
             emailId: "",
-            matrialStatus: "",
+            maritalStatus: "",
             wifeName: "",
             pastorWifeDOB: "",
             firstChildName: "",

@@ -73,23 +73,28 @@ export const LoginDashboard = () => {
                         onChange={handleChange}
                         value={userName}
                       />
-                      {error.userName && <div className="error">{error.userName}</div>}
+                      {error.userName && (
+                        <div className="error">{error.userName}</div>
+                      )}
                     </div>
                     <div className="input-error-container">
-                    <TextField
-                      size="small"
-                      style={{
-                        width: "320px",
-                        border: "1px solid #1B0303",
-                        borderRadius: "4px",
-                      }}
-                      type="password"
-                      label="Password"
-                      name="password"
-                      value={password}
-                      onChange={handleChange}
-                    />
-                    {error.password && <div className="login-error">{error.password}</div>}</div>
+                      <TextField
+                        size="small"
+                        style={{
+                          width: "320px",
+                          border: "1px solid #1B0303",
+                          borderRadius: "4px",
+                        }}
+                        type="password"
+                        label="Password"
+                        name="password"
+                        value={password}
+                        onChange={handleChange}
+                      />
+                      {error.password && (
+                        <div className="error">{error.password}</div>
+                      )}
+                    </div>
                   </div>
                   <div className="contentcontainer__remember">
                     <input

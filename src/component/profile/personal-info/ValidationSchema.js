@@ -23,21 +23,43 @@ export const personalValidationSchema = Yup.object({
     .required("Contact No is Required")
     .matches(/^\d{10}$/, "Contact No must be 10 digits"),
   emergencyContactNo: Yup.string()
-    .required("Emergency Contact No is Required")
+    .required("Emergency No is Required")
     .matches(/^\d{10}$/, "Emergency contact No must be 10 digits"),
   emailId: Yup.string()
-    .required("Email Id is Required")
+    .required("Email is Required")
     .email("Enter valid Email Id"),
-  martialStatus: Yup.string().required("Martial Status is Required"),
+  maritalStatus: Yup.string().required("Martial Status is Required"),
   wifeName: Yup.string()
-    .required("Wife Name is Required")
+    .test("wife-name-required", "Wife name is required", function (value) {
+      const { maritalStatus } = this.parent;
+      if (maritalStatus === "Married" && !value) {
+        return this.createError({ message: "Wife name is required" });
+      }
+      return true;
+    })
     .min(4, "Minimum 4 letters")
     .max(50, "Maximum 50 letters"),
   pastorWifeDOB: Yup.date()
-    .required("DOB is Required")
-    .typeError("Enter DOB in MM/DD/YYYY"),
+    .test("wife-dob-required", "Date of birth is required", function (value) {
+      const { maritalStatus } = this.parent;
+      if (maritalStatus === "Married" && !value) {
+        return this.createError({
+          message: "Date of birth is required",
+        });
+      }
+      return true;
+    })
+    .typeError("Enter a valid date (MM/DD/YYYY)"),
   firstChildName: Yup.string()
-    .required("Name is Required")
+    .test("first-child-name-required", "Name is required", function (value) {
+      const { maritalStatus } = this.parent;
+      if (maritalStatus === "Married" && !value) {
+        return this.createError({
+          message: "Name is required",
+        });
+      }
+      return true;
+    })
     .min(4, "Minimum 4 letters")
     .max(50, "Maximum 50 letters"),
   secondChildName: Yup.string()
@@ -65,9 +87,9 @@ export const qualificationSchema = Yup.object({
     .required("Place is Required")
     .min(4, "Minimum 4 letters")
     .max(50, "Maximum 50 letter"),
-  theologicalYearOfPassing: Yup.string().required(
-    "Year of Passing is Required"
-  ),
+  theologicalYearOfPassing: Yup.string()
+    .required("Year of Passing is Required")
+    .matches(/^\d{4}$/, "Year must be 4 digits"),
   ordinationDegree: Yup.string().required("Degree is Required"),
   ordinationInstitute: Yup.string()
     .required("Institute is Required")

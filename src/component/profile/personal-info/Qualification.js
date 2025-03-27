@@ -1,5 +1,10 @@
 import { Field } from "formik";
-import { FormCustomSelectField, FormCustomTextField } from "./FormCustomField";
+import {
+  FormCustomDatePickerField,
+  FormCustomSelectField,
+  FormCustomTextField,
+} from "./FormCustomField";
+import dayjs from "dayjs";
 
 export const Qualification = ({ values, handleChange, errors }) => {
   return (
@@ -22,9 +27,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.collegeDegree}
               onChange={handleChange}
             />
-            {errors.collegeDegree && (
+            {/* {errors.collegeDegree && (
               <div className="error">{errors.collegeDegree}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -34,9 +39,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.collegeInstitute}
               onChange={handleChange}
             />
-            {errors.collegeInstitute && (
+            {/* {errors.collegeInstitute && (
               <div className="error">{errors.collegeInstitute}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -46,19 +51,19 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.collegePlace}
               onChange={handleChange}
             />
-            {errors.collegePlace && (
+            {/* {errors.collegePlace && (
               <div className="error">{errors.collegePlace}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
               label="Year of Passing"
               name="collegeYearOfPassing"
-              component={FormCustomSelectField}
-              option={[
-                { label: "1976", value: "1976" },
-                { label: "1976", value: "1976" },
-              ]}
+              component={FormCustomDatePickerField}
+              value={dayjs(values.collegeYearOfPassing)}
+              onChange={handleChange}
+              views={["year"]}
+              minDate={dayjs("1950-01-01")}
             />
             {errors.collegeYearOfPassing && (
               <div className="error">{errors.collegeYearOfPassing}</div>
@@ -84,9 +89,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.theologicalDegree}
               onChange={handleChange}
             />
-            {errors.theologicalDegree && (
+            {/* {errors.theologicalDegree && (
               <div className="error">{errors.theologicalDegree}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -96,9 +101,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.theologicalInstitute}
               onChange={handleChange}
             />
-            {errors.theologicalInstitute && (
+            {/* {errors.theologicalInstitute && (
               <div className="error">{errors.theologicalInstitute}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -108,23 +113,23 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.theologicalPlace}
               onChange={handleChange}
             />
-            {errors.theologicalPlace && (
+            {/* {errors.theologicalPlace && (
               <div className="error">{errors.theologicalPlace}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
               label="Year of Passing"
               name="theologicalYearOfPassing"
-              component={FormCustomSelectField}
-              option={[
-                { label: "1976", value: "1976" },
-                { label: "1976", value: "1976" },
-              ]}
+              component={FormCustomDatePickerField}
+              value={dayjs(values.theologicalYearOfPassing)}
+              onChange={handleChange}
+              views={["year"]}
+              minDate={dayjs("1950-01-01")}
             />
-            {errors.theologicalYearOfPassing && (
+            {/* {errors.theologicalYearOfPassing && (
               <div className="error">{errors.theologicalYearOfPassing}</div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -146,9 +151,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.ordinationDegree}
               onChange={handleChange}
             />
-            {errors.ordinationDegree && (
+            {/* {errors.ordinationDegree && (
               <div className="error">{errors.ordinationDegree}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -158,9 +163,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.ordinationInstitute}
               onChange={handleChange}
             />
-            {errors.ordinationInstitute && (
+            {/* {errors.ordinationInstitute && (
               <div className="error">{errors.ordinationInstitute}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -170,17 +175,18 @@ export const Qualification = ({ values, handleChange, errors }) => {
               value={values.ordinationPlace}
               onChange={handleChange}
             />
-            {errors.ordinationPlace && (
+            {/* {errors.ordinationPlace && (
               <div className="error">{errors.ordinationPlace}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
               label="Date"
               name="ordinationDate"
-              component={FormCustomTextField}
-              value={values.ordinationDate}
+              component={FormCustomDatePickerField}
+              value={dayjs(values.ordinationDate)}
               onChange={handleChange}
+              format="DD/MM/YYYY"
             />
             {errors.ordinationDate && (
               <div className="error">{errors.ordinationDate}</div>
@@ -190,11 +196,10 @@ export const Qualification = ({ values, handleChange, errors }) => {
             <Field
               label="Ministry Starting Date"
               name="ordinationMinistryStartingDate"
-              component={FormCustomSelectField}
-              option={[
-                { label: "1976", value: "1976" },
-                { label: "1976", value: "1976" },
-              ]}
+              component={FormCustomDatePickerField}
+              value={dayjs(values.ordinationMinistryStartingDate)}
+              onChange={handleChange}
+              format="DD/MM/YYYY"
             />
             {errors.ordinationMinistryStartingDate && (
               <div className="error">

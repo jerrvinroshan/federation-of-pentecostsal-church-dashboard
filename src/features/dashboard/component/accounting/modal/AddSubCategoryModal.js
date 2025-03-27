@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { Modal, Paper, TextField, Button } from "@mui/material";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 export const AddSubCategoryModal = ({
   open,
@@ -8,39 +9,49 @@ export const AddSubCategoryModal = ({
   handleSaveEdit,
   subCategory,
 }) => {
-  const [categoryTitle, setCategoryTitle] = useState("");
-  const [subCategoryTitle, setSubCategoryTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const subCategorySchema = Yup.object({
+    categoryTitle: Yup.string()
+      .required("Enter Category")
+      .min(4, "Minimum 4 letter")
+      .max(50, "Maximum 50 letters"),
+    subCategoryTitle: Yup.string()
+      .required("Enter sub-Category")
+      .min(4, "Minimum 4 letter")
+      .max(50, "Maximum 50 letters"),
+    description: Yup.string()
+      .min(4, "Minimum 4 letter")
+      .max(50, "Maximum 50 letters"),
+  });
 
-  useEffect(() => {
+  const handleSubmit = async (values) => {
     if (subCategory) {
-      setCategoryTitle(subCategory.category);
-      setSubCategoryTitle(subCategory.subCategory);
-      setDescription(subCategory.description);
-    } else {
-      setCategoryTitle("");
-      setSubCategoryTitle("");
-      setDescription("");
-    }
-  }, [subCategory]);
-
-  const handleSubmit = () => {
-    if (categoryTitle && subCategoryTitle && description) {
-      if (subCategory) {
+      try {
+        await subCategorySchema.validate(values, { abortEarly: false });
         handleSaveEdit({
           ...subCategory,
-          category: categoryTitle,
-          subcategory: subCategoryTitle,
-          description: description,
+          category: values.categoryTitle,
+          subCategory: values.subCategoryTitle,
+          description: values.description,
         });
-      } else {
-        handleAddSubCategory(categoryTitle,subCategoryTitle, description);
+        console.log("form submitted", values);
+      } catch (error) {
+        console.error("Validation error", error);
       }
-      setCategoryTitle("");
-      setSubCategoryTitle("");
-      setDescription("");
-      handleClose();
+    } else {
+      try {
+        await subCategorySchema.validate(values, { abortEarly: false });
+        handleAddSubCategory(
+          values.categoryTitle,
+          values.subCategoryTitle,
+          values.description
+        );
+        console.log("form submitted", values);
+      } catch (error) {
+        console.error("Validation error", error);
+      }
     }
+
+    handleClose();
   };
 
   return (
@@ -62,36 +73,60 @@ export const AddSubCategoryModal = ({
         }}
       >
         <h2>{subCategory ? "Edit Category" : "Add New Sub-Category"}</h2>
-        <TextField
-          fullWidth
-          label="Category"
-          variant="outlined"
-          value={categoryTitle}
-          onChange={(e) => setCategoryTitle(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Sub-Category"
-          variant="outlined"
-          value={subCategoryTitle}
-          onChange={(e) => setSubCategoryTitle(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Description"
-          variant="outlined"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          sx={{ mt: 2 }}
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleSubmit}
-          sx={{ mt: 2 }}
+        <Formik
+          initialValues={{
+            categoryTitle: "",
+            subCategoryTitle: "",
+            description: "",
+          }}
+          validationSchema={subCategorySchema}
+          onSubmit={handleSubmit}
         >
-          {subCategory ? "Save Changes" : "Add Sub-Category"}
-        </Button>
+          {({ values, handleChange, errors }) => (
+            <Form>
+              <TextField
+                fullWidth
+                label="Category"
+                variant="outlined"
+                name="categoryTitle"
+                value={values.categoryTitle}
+                onChange={handleChange}
+                error={Boolean(errors.categoryTitle)}
+                helperText={errors.categoryTitle}
+              />
+              <TextField
+                fullWidth
+                label="Sub-Category"
+                variant="outlined"
+                name="subCategoryTitle"
+                value={values.subCategoryTitle}
+                onChange={handleChange}
+                error={Boolean(errors.subCategoryTitle)}
+                helperText={errors.subCategoryTitle}
+                sx={{ mt: 2 }}
+              />
+              <TextField
+                fullWidth
+                label="Description"
+                variant="outlined"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+                error={Boolean(errors.description)}
+                helperText={errors.description}
+                sx={{ mt: 2 }}
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                type="submit"
+                sx={{ mt: 2 }}
+              >
+                {subCategory ? "Save Changes" : "Add Sub-Category"}
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </Paper>
     </Modal>
   );

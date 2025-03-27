@@ -34,7 +34,7 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.doorNo}
               onChange={handleChange}
             />
-            {errors.doorNo && <div className="error">{errors.doorNo}</div>}
+            {/* {errors.doorNo && <div className="error">{errors.doorNo}</div>} */}
           </div>
           <div>
             <Field
@@ -44,9 +44,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.streetName}
               onChange={handleChange}
             />
-            {errors.streetName && (
+            {/* {errors.streetName && (
               <div className="error">{errors.streetName}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -56,9 +56,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.panchayat}
               onChange={handleChange}
             />
-            {errors.panchayat && (
+            {/* {errors.panchayat && (
               <div className="error">{errors.panchayat}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -68,7 +68,7 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.village}
               onChange={handleChange}
             />
-            {errors.village && <div className="error">{errors.village}</div>}
+            {/* {errors.village && <div className="error">{errors.village}</div>} */}
           </div>
           <div>
             <Field
@@ -78,7 +78,7 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.thaluk}
               onChange={handleChange}
             />
-            {errors.thaluk && <div className="error">{errors.thaluk}</div>}
+            {/* {errors.thaluk && <div className="error">{errors.thaluk}</div>} */}
           </div>
           <div>
             <Field
@@ -88,7 +88,7 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.district}
               onChange={handleChange}
             />
-            {errors.district && <div className="error">{errors.district}</div>}
+            {/* {errors.district && <div className="error">{errors.district}</div>} */}
           </div>
           <div>
             <Field
@@ -98,9 +98,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.assemblyConstituency}
               onChange={handleChange}
             />
-            {errors.assemblyConstituency && (
+            {/* {errors.assemblyConstituency && (
               <div className="error">{errors.assemblyConstituency}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -110,9 +110,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.parliamentConstituency}
               onChange={handleChange}
             />
-            {errors.parliamentConstituency && (
+            {/* {errors.parliamentConstituency && (
               <div className="error">{errors.parliamentConstituency}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -122,9 +122,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.localPoliceStation}
               onChange={handleChange}
             />
-            {errors.localPoliceStation && (
+            {/* {errors.localPoliceStation && (
               <div className="error">{errors.localPoliceStation}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -134,9 +134,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.churchWebsite}
               onChange={handleChange}
             />
-            {errors.churchWebsite && (
+            {/* {errors.churchWebsite && (
               <div className="error">{errors.churchWebsite}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -148,9 +148,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
                 { label: "Denomination", value: "Denomination" },
               ]}
             />
-            {errors.independentDenomination && (
+            {/* {errors.independentDenomination && (
               <div className="error">{errors.independentDenomination}</div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -172,9 +172,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.nameOfDenomination}
               onChange={handleChange}
             />
-            {errors.nameOfDenomination && (
+            {/* {errors.nameOfDenomination && (
               <div className="error">{errors.nameOfDenomination}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -184,9 +184,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.presidentDenomination}
               onChange={handleChange}
             />
-            {errors.presidentDenomination && (
+            {/* {errors.presidentDenomination && (
               <div className="error">{errors.presidentDenomination}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -196,9 +196,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.headQuarters}
               onChange={handleChange}
             />
-            {errors.headQuarters && (
+            {/* {errors.headQuarters && (
               <div className="error">{errors.headQuarters}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -208,9 +208,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.registrationNo}
               onChange={handleChange}
             />
-            {errors.registrationNo && (
+            {/* {errors.registrationNo && (
               <div className="error">{errors.registrationNo}</div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

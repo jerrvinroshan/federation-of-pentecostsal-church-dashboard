@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 import { Modal, Paper, TextField, Button } from "@mui/material";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 export const AddCategoryModal = ({
   open,
@@ -8,34 +9,40 @@ export const AddCategoryModal = ({
   handleSaveEdit,
   category,
 }) => {
-  const [categoryTitle, setCategoryTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const categorySchema = Yup.object({
+    categoryTitle: Yup.string()
+      .required("Enter Category")
+      .min(4, "Minimum 4 letter")
+      .max(50, "Maximum 50 letters"),
+    description: Yup.string()
+      .min(4, "Minimum 4 letter")
+      .max(50, "Maximum 50 letters"),
+  });
 
-  useEffect(() => {
+  const handleSubmit = async (values) => {
     if (category) {
-      setCategoryTitle(category.category);
-      setDescription(category.description);
-    } else {
-      setCategoryTitle("");
-      setDescription("");
-    }
-  }, [category]);
-
-  const handleSubmit = () => {
-    if (categoryTitle && description) {
-      if (category) {
+      try {
+        await categorySchema.validate(values, { abortEarly: false });
         handleSaveEdit({
           ...category,
-          category: categoryTitle,
-          description: description,
+          category: values.categoryTitle,
+          description: values.description,
         });
-      } else {
-        handleAddCategory(categoryTitle, description);
+        console.log("form submitted", values);
+      } catch (error) {
+        console.error("Validation error", error);
       }
-      setCategoryTitle("");
-      setDescription("");
-      handleClose();
+    } else {
+      try {
+        await categorySchema.validate(values, { abortEarly: false });
+        handleAddCategory(values.categoryTitle, values.description);
+        console.log("form submitted", values);
+      } catch (error) {
+        console.error("Validation error", error);
+      }
     }
+
+    handleClose();
   };
 
   // Style CSS
@@ -58,29 +65,48 @@ export const AddCategoryModal = ({
     <Modal open={open} onClose={handleClose}>
       <Paper sx={style}>
         <h2>{category ? "Edit Category" : "Add New Category"}</h2>
-        <TextField
-          fullWidth
-          label="Category"
-          variant="outlined"
-          value={categoryTitle}
-          onChange={(e) => setCategoryTitle(e.target.value)}
-        />
-        <TextField
-          fullWidth
-          label="Description"
-          variant="outlined"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          sx={{ mt: 2 }}
-        />
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleSubmit}
-          sx={{ mt: 2 }}
+        <Formik
+          initialValues={{
+            categoryTitle: category ? category.category : "",
+            description: category ? category.description : "",
+          }}
+          validationSchema={categorySchema}
+          onSubmit={handleSubmit}
         >
-          {category ? "Save Changes" : "Add Category"}
-        </Button>
+          {({ values, handleChange, errors }) => (
+            <Form>
+              <TextField
+                fullWidth
+                label="Category"
+                variant="outlined"
+                name="categoryTitle"
+                value={values.categoryTitle}
+                onChange={handleChange}
+                error={Boolean(errors.categoryTitle)}
+                helperText={errors.categoryTitle}
+              />
+              <TextField
+                fullWidth
+                label="Description"
+                variant="outlined"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+                error={Boolean(errors.description)}
+                helperText={errors.description}
+                sx={{ mt: 2 }}
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                type="submit"
+                sx={{ mt: 2 }}
+              >
+                {category ? "Save Changes" : "Add Category"}
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </Paper>
     </Modal>
   );

@@ -1,12 +1,15 @@
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
   TextField,
 } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-export const FormCustomTextField = ({ field, ...props }) => {
+export const FormCustomTextField = ({ field, form, errors, ...props }) => {
   return (
     <div>
       <TextField
@@ -14,6 +17,8 @@ export const FormCustomTextField = ({ field, ...props }) => {
         {...props}
         size="small"
         style={{ width: "220px" }}
+        error={!!form.errors[field.name]}
+        helperText={form.errors[field.name]}
       />
     </div>
   );
@@ -24,11 +29,16 @@ export const FormCustomSelectField = ({
   form,
   option,
   label,
+  errors,
   ...props
 }) => {
   return (
     <div>
-      <FormControl size="small" style={{ width: "220px" }}>
+      <FormControl
+        size="small"
+        style={{ width: "220px" }}
+        error={!!form.errors[field.name]}
+      >
         <InputLabel>{label}</InputLabel>
         <Select
           {...field}
@@ -42,7 +52,26 @@ export const FormCustomSelectField = ({
             </MenuItem>
           ))}
         </Select>
+        {!!form.errors[field.name] && (
+          <FormHelperText>{form.errors[field.name]}</FormHelperText>
+        )}
       </FormControl>
+    </div>
+  );
+};
+
+export const FormCustomDatePickerField = ({ field, label, form, ...props }) => {
+  return (
+    <div style={{ width: "220px" }}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+          sx={{ "& .MuiOutlinedInput-root": { height: "40px" } }}
+          label={label}
+          {...field}
+          {...props}
+          onChange={(newValue) => form.setFieldValue(field.name, newValue)}
+        />
+      </LocalizationProvider>
     </div>
   );
 };
