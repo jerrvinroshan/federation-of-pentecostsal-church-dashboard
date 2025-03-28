@@ -40,9 +40,9 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               format="DD/MM/YYYY"
             />
-            {errors.pastorDOB && (
+            {/* {errors.pastorDOB && (
               <div className="error">{errors.pastorDOB}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -194,9 +194,9 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               format="DD/MM/YYYY"
             />
-            {errors.pastorWifeDOB && (
+            {/* {errors.pastorWifeDOB && (
               <div className="error">{errors.pastorWifeDOB}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field

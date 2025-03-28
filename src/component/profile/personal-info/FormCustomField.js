@@ -60,7 +60,13 @@ export const FormCustomSelectField = ({
   );
 };
 
-export const FormCustomDatePickerField = ({ field, label, form, ...props }) => {
+export const FormCustomDatePickerField = ({
+  field,
+  label,
+  form,
+  errors,
+  ...props
+}) => {
   return (
     <div style={{ width: "220px" }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -70,8 +76,14 @@ export const FormCustomDatePickerField = ({ field, label, form, ...props }) => {
           {...field}
           {...props}
           onChange={(newValue) => form.setFieldValue(field.name, newValue)}
+          slotProps={{
+            textField: { error: Boolean(form.errors[field.name]) },
+          }}
         />
       </LocalizationProvider>
+      {!!form.errors[field.name] && (
+        <FormHelperText sx={{color:"#d32f2f",margin:"4px 14px 0"}}>{form.errors[field.name]}</FormHelperText>
+      )}
     </div>
   );
 };

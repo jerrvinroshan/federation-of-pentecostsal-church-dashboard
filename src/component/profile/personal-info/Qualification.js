@@ -1,7 +1,6 @@
 import { Field } from "formik";
 import {
   FormCustomDatePickerField,
-  FormCustomSelectField,
   FormCustomTextField,
 } from "./FormCustomField";
 import dayjs from "dayjs";
@@ -65,9 +64,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               views={["year"]}
               minDate={dayjs("1950-01-01")}
             />
-            {errors.collegeYearOfPassing && (
+            {/* {errors.collegeYearOfPassing && (
               <div className="error">{errors.collegeYearOfPassing}</div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -188,9 +187,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               format="DD/MM/YYYY"
             />
-            {errors.ordinationDate && (
+            {/* {errors.ordinationDate && (
               <div className="error">{errors.ordinationDate}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field
@@ -201,11 +200,11 @@ export const Qualification = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               format="DD/MM/YYYY"
             />
-            {errors.ordinationMinistryStartingDate && (
+            {/* {errors.ordinationMinistryStartingDate && (
               <div className="error">
                 {errors.ordinationMinistryStartingDate}
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

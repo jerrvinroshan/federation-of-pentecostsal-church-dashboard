@@ -22,9 +22,9 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
               value={values.churchName}
               onChange={handleChange}
             />
-            {errors.churchName && (
+            {/* {errors.churchName && (
               <div className="error">{errors.churchName}</div>
-            )}
+            )} */}
           </div>
           <div>
             <Field

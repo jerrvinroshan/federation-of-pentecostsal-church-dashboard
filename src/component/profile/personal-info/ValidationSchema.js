@@ -3,18 +3,18 @@ import * as Yup from "yup";
 export const personalValidationSchema = Yup.object({
   pastorName: Yup.string()
     .required("Name is Required")
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   pastorDOB: Yup.date()
     .required("Date of Birth is Required")
     .typeError("Enter DOB in MM/DD/YYYY"),
   fatherName: Yup.string()
     .required("Father Name is Required")
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   motherName: Yup.string()
     .required("Mother Name is Required")
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   nativePlace: Yup.string().required("Native Place is Required"),
   nativeDistrict: Yup.string().required("Native District is Required"),
@@ -37,7 +37,7 @@ export const personalValidationSchema = Yup.object({
       }
       return true;
     })
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   pastorWifeDOB: Yup.date()
     .test("wife-dob-required", "Date of birth is required", function (value) {
@@ -60,10 +60,10 @@ export const personalValidationSchema = Yup.object({
       }
       return true;
     })
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   secondChildName: Yup.string()
-    .min(4, "Minimum 4 letters")
+    .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
 });
 
@@ -71,34 +71,34 @@ export const qualificationSchema = Yup.object({
   collegeDegree: Yup.string().required("Degree is Required"),
   collegeInstitute: Yup.string()
     .required("Institute is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
   collegePlace: Yup.string()
     .required("Place is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
   collegeYearOfPassing: Yup.string().required("Year of Passing is Required"),
   theologicalDegree: Yup.string().required("Degree is Required"),
   theologicalInstitute: Yup.string()
     .required("Institute is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
   theologicalPlace: Yup.string()
     .required("Place is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
-  theologicalYearOfPassing: Yup.string()
-    .required("Year of Passing is Required")
-    .matches(/^\d{4}$/, "Year must be 4 digits"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
+  theologicalYearOfPassing: Yup.string().required(
+    "Year of Passing is Required"
+  ),
   ordinationDegree: Yup.string().required("Degree is Required"),
   ordinationInstitute: Yup.string()
     .required("Institute is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
   ordinationPlace: Yup.string()
     .required("Place is Required")
-    .min(4, "Minimum 4 letters")
-    .max(50, "Maximum 50 letter"),
+    .min(4, "Minimum 4 letter")
+    .max(50, "Maximum 50 letters"),
   ordinationDate: Yup.date()
     .typeError("Date Format MM/DD/YYYY")
     .required("Date is required"),
