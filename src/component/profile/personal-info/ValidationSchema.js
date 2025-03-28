@@ -24,7 +24,7 @@ export const personalValidationSchema = Yup.object({
     .matches(/^\d{10}$/, "Contact No must be 10 digits"),
   emergencyContactNo: Yup.string()
     .required("Emergency No is Required")
-    .matches(/^\d{10}$/, "Emergency contact No must be 10 digits"),
+    .matches(/^\d{10}$/, "Emergency No must be 10 digits"),
   emailId: Yup.string()
     .required("Email is Required")
     .email("Enter valid Email Id"),

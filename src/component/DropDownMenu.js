@@ -8,12 +8,11 @@ export const DropDownMenu = () => {
 
   const navigate = useNavigate();
 
-  const Profileopen = () => {
+  const Profileopen = (e) => {
+    e.stopPropagation();
     setIsProfileOpen(true);
-    console.log("open");
   };
   const handleClose = () => {
-    console.log("close");
     setIsProfileOpen(false);
   };
 
@@ -28,17 +27,10 @@ export const DropDownMenu = () => {
   return (
     <div className="dropdownmenu__backgroundColor">
       <div className="dropdownmenu__container">
-        <Button
-          style={styleBtn}
-          onClick={Profileopen}
-          onMouseEnter={Profileopen}
-        >
+        <Button style={styleBtn} type="button" fullWidth onClick={Profileopen}>
           Profile
         </Button>
-        <Button
-          style={styleBtn}
-          onClick={() => navigate("/")}
-        >
+        <Button style={styleBtn} onClick={() => navigate("/")} fullWidth>
           Log out
         </Button>
       </div>

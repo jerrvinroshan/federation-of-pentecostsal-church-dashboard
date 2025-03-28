@@ -173,9 +173,10 @@ export const SideNavBar = () => {
             <div className="SideNavBar__MenuItem">
               Reports
               {isReportsOpen ||
-              checkIfActive("/report/ledger-report") ||
-              checkIfActive("/report/member-report") ||
-              checkIfActive("/report/anniversary-report") ? (
+              checkIfActive("/report/ledger-report")
+              //  || checkIfActive("/report/member-report") ||
+              // checkIfActive("/report/anniversary-report") 
+              ? (
                 <KeyboardArrowUpIcon />
               ) : (
                 <KeyboardArrowDownIcon />
@@ -186,9 +187,9 @@ export const SideNavBar = () => {
               style={{
                 display:
                   isReportsOpen ||
-                  checkIfActive("/report/ledger-report") ||
-                  checkIfActive("/report/member-report") ||
-                  checkIfActive("/report/anniversary-report")
+                  checkIfActive("/report/ledger-report") 
+                  // || checkIfActive("/report/member-report") ||
+                  // checkIfActive("/report/anniversary-report")
                     ? "flex"
                     : "none",
               }}
@@ -204,7 +205,7 @@ export const SideNavBar = () => {
                   Ledger Report
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   className="SideNavBar__Link"
                   to="/report/member-report"
@@ -225,7 +226,7 @@ export const SideNavBar = () => {
                 >
                   Anniversary Report
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </li>
 

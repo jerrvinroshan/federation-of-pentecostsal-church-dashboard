@@ -10,8 +10,6 @@ import AddSubCategory from "../page/Accounting/AddSubCategory";
 import AddLedger from "../page/Accounting/AddLedger";
 import ViewLedger from "../page/Accounting/ViewLedger";
 import LedgerReport from "../page/Report/LedgerReport";
-import MemberReport from "../page/Report/MemberReport";
-import AnniversaryReport from "../page/Report/AnniversaryReport";
 import AddPaymentMethod from "../page/AddPaymentMethod";
 import PersonalInformation from "../page/PersonalInformation";
 
@@ -88,14 +86,14 @@ const AppRouter = createBrowserRouter([
             path: "ledger-report",
             element: <LedgerReport />,
           },
-          {
+          /*  {
             path: "member-report",
             element: <MemberReport />,
           },
           {
             path: "anniversary-report",
             element: <AnniversaryReport />,
-          },
+          },*/
         ],
       },
       {
@@ -119,7 +117,7 @@ const AppRouter = createBrowserRouter([
             element: <PersonalInformation />,
           },
         ],
-      }
+      },
     ],
   },
 ]);

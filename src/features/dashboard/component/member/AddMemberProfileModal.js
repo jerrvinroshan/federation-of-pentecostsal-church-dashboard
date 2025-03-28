@@ -33,8 +33,9 @@ const AddMemberProfileModal = ({ open, handleClose }) => {
     const errors = await validateForm();
     if (Object.keys(errors).length === 0) {
       alert("finished", values);
+      setCurrentTab(1);
     } else {
-      console.log("Validation failed, stay on current step:", errors);
+      console.log("Validation failed", errors);
     }
   };
 
