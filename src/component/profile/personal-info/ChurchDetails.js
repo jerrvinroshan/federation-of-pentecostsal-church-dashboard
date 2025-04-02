@@ -1,7 +1,49 @@
 import { Field } from "formik";
 import { FormCustomSelectField, FormCustomTextField } from "./FormCustomField";
+import data from "../../../data/data.json";
 
-export const ChurchDetails = ({ values, handleChange, errors }) => {
+export const ChurchDetails = ({ values, handleChange }) => {
+  const stateNames = ["Tamil Nadu", "Kerala"];
+
+  const selectedStates = data.filter((stateObj) =>
+    stateNames.includes(stateObj.state)
+  );
+
+  const districts = selectedStates.flatMap((stateObj) =>
+    stateObj.districts.map((district) => ({
+      label: district.district,
+      value: district.district,
+    }))
+  );
+
+  const thaluk = (district) => {
+    const districtObj = data
+      .flatMap((state) => state.districts)
+      .find((item) => item.district === district);
+
+    return districtObj
+      ? districtObj.subDistricts.map((subDistrictObj) => ({
+          label: subDistrictObj.subDistrict,
+          value: subDistrictObj.subDistrict,
+        }))
+      : [];
+  };
+
+  const village = (district) => {
+    const districtObj = data
+      .flatMap((state) => state.districts)
+      .find((item) => item.district === district);
+
+    return districtObj
+      ? districtObj.subDistricts.flatMap((subDistrictObj) =>
+          subDistrictObj.villages.map((village) => ({
+            label: village,
+            value: village,
+          }))
+        )
+      : [];
+  };
+
   return (
     <div>
       <div>
@@ -62,33 +104,30 @@ export const ChurchDetails = ({ values, handleChange, errors }) => {
           </div>
           <div>
             <Field
-              label="Village"
-              name="village"
-              component={FormCustomTextField}
-              value={values.village}
-              onChange={handleChange}
+              label="District"
+              name="district"
+              component={FormCustomSelectField}
+              option={districts}
             />
-            {/* {errors.village && <div className="error">{errors.village}</div>} */}
+            {/* {errors.district && <div className="error">{errors.district}</div>} */}
           </div>
           <div>
             <Field
               label="Thaluk"
               name="thaluk"
-              component={FormCustomTextField}
-              value={values.thaluk}
-              onChange={handleChange}
+              component={FormCustomSelectField}
+              option={thaluk(values.district)}
             />
             {/* {errors.thaluk && <div className="error">{errors.thaluk}</div>} */}
           </div>
           <div>
             <Field
-              label="District"
-              name="district"
-              component={FormCustomTextField}
-              value={values.district}
-              onChange={handleChange}
+              label="Village"
+              name="village"
+              component={FormCustomSelectField}
+              option={village(values.district)}
             />
-            {/* {errors.district && <div className="error">{errors.district}</div>} */}
+            {/* {errors.village && <div className="error">{errors.village}</div>} */}
           </div>
           <div>
             <Field

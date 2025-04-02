@@ -63,6 +63,7 @@ export const Qualification = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               views={["year"]}
               minDate={dayjs("1950-01-01")}
+              format="YYYY"
             />
             {/* {errors.collegeYearOfPassing && (
               <div className="error">{errors.collegeYearOfPassing}</div>
@@ -125,6 +126,7 @@ export const Qualification = ({ values, handleChange, errors }) => {
               onChange={handleChange}
               views={["year"]}
               minDate={dayjs("1950-01-01")}
+              format="YYYY"
             />
             {/* {errors.theologicalYearOfPassing && (
               <div className="error">{errors.theologicalYearOfPassing}</div>

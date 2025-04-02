@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 export const FormCustomTextField = ({ field, form, errors, ...props }) => {
   return (
@@ -65,24 +66,45 @@ export const FormCustomDatePickerField = ({
   label,
   form,
   errors,
+  format = "DD/MM/YYYY",
   ...props
 }) => {
   return (
     <div style={{ width: "220px" }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          sx={{ "& .MuiOutlinedInput-root": { height: "40px" } }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+            },
+            "& .MuiInputLabel-root": {
+              top: "-5px",
+            },
+            "& .MuiInputBase-input":{
+              paddingBlock:"8.5px"
+            }
+          }}
           label={label}
           {...field}
           {...props}
           onChange={(newValue) => form.setFieldValue(field.name, newValue)}
           slotProps={{
-            textField: { error: Boolean(form.errors[field.name]) },
+            textField: {
+              error: Boolean(form.errors[field.name]),
+              inputProps: {
+                value: field.value ? dayjs(field.value).format(format) : "",
+                placeholder: "",
+              },
+            },
           }}
         />
       </LocalizationProvider>
       {!!form.errors[field.name] && (
-        <FormHelperText sx={{color:"#d32f2f",margin:"4px 14px 0"}}>{form.errors[field.name]}</FormHelperText>
+        <FormHelperText sx={{ color: "#d32f2f", margin: "4px 14px 0" }}>
+          {form.errors[field.name]}
+        </FormHelperText>
       )}
     </div>
   );

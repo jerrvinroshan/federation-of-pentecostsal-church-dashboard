@@ -5,8 +5,28 @@ import {
   FormCustomTextField,
 } from "./FormCustomField";
 import { Field } from "formik";
+import data from "../../../data/data.json";
 
-export const PersonalDetails = ({ values, handleChange, errors }) => {
+export const PersonalDetails = ({ values, handleChange }) => {
+  const DistrictSelect = (state) => {
+    const stateObj = data.find((item) => item.state === state);
+    return stateObj ? stateObj.districts : [];
+  };
+
+  const PlaceSelect = (district) => {
+    const districtObj = data
+      .flatMap((state) => state.districts)
+      .find((item) => item.district === district);
+
+    return districtObj
+      ? districtObj.subDistricts.flatMap((subDistrictObj) =>
+          subDistrictObj.villages.map((village) => ({
+            label: village,
+            value: village,
+          }))
+        )
+      : [];
+  };
   return (
     <div>
       <div>
@@ -70,18 +90,16 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
           </div>
           <div>
             <Field
-              label="Native Place"
-              name="nativePlace"
+              label="Native State"
+              name="nativeState"
               component={FormCustomSelectField}
-              option={[
-                { label: "Colcacel", value: "Colcacel" },
-                { label: "Nagercoil", value: "Nagercoil" },
-                { label: "Marthadam", value: "Marthadam" },
-                { label: "Kochin", value: "Kochin" },
-              ]}
+              option={data.map((stateObj) => ({
+                label: stateObj.state,
+                value: stateObj.state,
+              }))}
             />
-            {/* {errors.nativePlace && (
-              <div className="error">{errors.nativePlace}</div>
+            {/* {errors.nativeState && (
+              <div className="error">{errors.nativeState}</div>
             )} */}
           </div>
           <div>
@@ -89,12 +107,10 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
               label="Native District"
               name="nativeDistrict"
               component={FormCustomSelectField}
-              option={[
-                { label: "Colcacel", value: "Colcacel" },
-                { label: "Nagercoil", value: "Nagercoil" },
-                { label: "Marthadam", value: "Marthadam" },
-                { label: "Kochin", value: "Kochin" },
-              ]}
+              option={DistrictSelect(values.nativeState).map((districtObj) => ({
+                label: districtObj.district,
+                value: districtObj.district,
+              }))}
             />
             {/* {errors.nativeDistrict && (
               <div className="error">{errors.nativeDistrict}</div>
@@ -102,19 +118,16 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
           </div>
           <div>
             <Field
-              label="Native State"
-              name="nativeState"
+              label="Native Place"
+              name="nativePlace"
               component={FormCustomSelectField}
-              option={[
-                { label: "Tamil Nadu", value: "Tamil Nadu" },
-                { label: "Kerala", value: "Kerala" },
-                { label: "Mumbai", value: "Mumbai" },
-              ]}
+              option={PlaceSelect(values.nativeDistrict)}
             />
-            {/* {errors.nativeState && (
-              <div className="error">{errors.nativeState}</div>
+            {/* {errors.nativePlace && (
+              <div className="error">{errors.nativePlace}</div>
             )} */}
           </div>
+
           <div>
             <Field
               label="Contact No"
@@ -175,48 +188,56 @@ export const PersonalDetails = ({ values, handleChange, errors }) => {
               <div className="error">{errors.maritalStatus}</div>
             )} */}
           </div>
-          <div>
-            <Field
-              label="Wife Name"
-              name="wifeName"
-              component={FormCustomTextField}
-              value={values.wifeName}
-              onChange={handleChange}
-            />
-            {/* {errors.wifeName && <div className="error">{errors.wifeName}</div>} */}
-          </div>
-          <div>
-            <Field
-              label="DOB"
-              name="pastorWifeDOB"
-              component={FormCustomDatePickerField}
-              value={dayjs(values.pastorWifeDOB)}
-              onChange={handleChange}
-              format="DD/MM/YYYY"
-            />
-            {/* {errors.pastorWifeDOB && (
+          {values.maritalStatus === "Married" && (
+            <div>
+              <Field
+                label="Wife Name"
+                name="wifeName"
+                component={FormCustomTextField}
+                value={values.wifeName}
+                onChange={handleChange}
+              />
+              {/* {errors.wifeName && <div className="error">{errors.wifeName}</div>} */}
+            </div>
+          )}
+          {values.maritalStatus === "Married" && (
+            <div>
+              <Field
+                label="DOB"
+                name="pastorWifeDOB"
+                component={FormCustomDatePickerField}
+                value={dayjs(values.pastorWifeDOB)}
+                onChange={handleChange}
+                format="DD/MM/YYYY"
+              />
+              {/* {errors.pastorWifeDOB && (
               <div className="error">{errors.pastorWifeDOB}</div>
             )} */}
-          </div>
-          <div>
-            <Field
-              label="First Child Name"
-              name="firstChildName"
-              component={FormCustomTextField}
-              value={values.firstChildName}
-              onChange={handleChange}
-            />
-            {/* {errors.firstChildName && (
+            </div>
+          )}
+          {values.maritalStatus === "Married" && (
+            <div>
+              <Field
+                label="First Child Name"
+                name="firstChildName"
+                component={FormCustomTextField}
+                value={values.firstChildName}
+                onChange={handleChange}
+              />
+              {/* {errors.firstChildName && (
               <div className="error">{errors.firstChildName}</div>
             )} */}
-          </div>
-          <Field
-            label="Second Child Name"
-            name="secondChildName"
-            component={FormCustomTextField}
-            value={values.secondChildName}
-            onChange={handleChange}
-          />
+            </div>
+          )}
+          {values.maritalStatus === "Married" && (
+            <Field
+              label="Second Child Name"
+              name="secondChildName"
+              component={FormCustomTextField}
+              value={values.secondChildName}
+              onChange={handleChange}
+            />
+          )}
         </div>
       </div>
       {/* <button type="submit">Next</button> */}
