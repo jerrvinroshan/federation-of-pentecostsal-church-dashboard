@@ -152,19 +152,59 @@ export const churchDetailSchema = Yup.object({
     .max(50, "Maximum 50 letters"),
   independentDenomination: Yup.string().required("Choose one"),
   nameOfDenomination: Yup.string()
-    .required("Denomination name is required")
+    .test(
+      "denomination-name-required",
+      "Denomination name is required",
+      function (value) {
+        const { independentDenomination } = this.parent;
+        if (independentDenomination === "Denomination" && !value) {
+          return this.createError({ message: "Denomination name is required" });
+        }
+        return true;
+      }
+    )
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   presidentDenomination: Yup.string()
-    .required("President name is required")
+    .test(
+      "president-name-required",
+      "President name is required",
+      function (value) {
+        const { independentDenomination } = this.parent;
+        if (independentDenomination === "Denomination" && !value) {
+          return this.createError({ message: "President name is required" });
+        }
+        return true;
+      }
+    )
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   headQuarters: Yup.string()
-    .required("Head Quarters is required")
+    .test(
+      "head-quarters-required",
+      "Head Quarters is required",
+      function (value) {
+        const { independentDenomination } = this.parent;
+        if (independentDenomination === "Denomination" && !value) {
+          return this.createError({ message: "Head Quarters is required" });
+        }
+        return true;
+      }
+    )
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   registrationNo: Yup.string()
-    .required("Registration No is required")
+    .test(
+      "Registration-no-required",
+      "Registration No is required",
+      function (value) {
+        const { independentDenomination } = this.parent;
+        if (independentDenomination === "Denomination" && !value) {
+          return this.createError({ message: "Registration No is required" });
+        }
+        return true;
+      }
+    )
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
 });

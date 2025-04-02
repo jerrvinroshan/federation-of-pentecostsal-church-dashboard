@@ -193,66 +193,68 @@ export const ChurchDetails = ({ values, handleChange }) => {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "32px" }}>
-        <h2>Trust / Society</h2>
-        <div
-          style={{
-            display: "flex",
-            gap: "40px",
-            flexWrap: "wrap",
-            marginTop: "36px",
-          }}
-        >
-          <div>
-            <Field
-              label="Name of Denomination"
-              name="nameOfDenomination"
-              component={FormCustomTextField}
-              value={values.nameOfDenomination}
-              onChange={handleChange}
-            />
-            {/* {errors.nameOfDenomination && (
+      {values.independentDenomination === "Denomination" && (
+        <div style={{ marginTop: "32px" }}>
+          <h2>Trust / Society</h2>
+          <div
+            style={{
+              display: "flex",
+              gap: "40px",
+              flexWrap: "wrap",
+              marginTop: "36px",
+            }}
+          >
+            <div>
+              <Field
+                label="Name of Denomination"
+                name="nameOfDenomination"
+                component={FormCustomTextField}
+                value={values.nameOfDenomination}
+                onChange={handleChange}
+              />
+              {/* {errors.nameOfDenomination && (
               <div className="error">{errors.nameOfDenomination}</div>
             )} */}
-          </div>
-          <div>
-            <Field
-              label="President of Denomination"
-              name="presidentDenomination"
-              component={FormCustomTextField}
-              value={values.presidentDenomination}
-              onChange={handleChange}
-            />
-            {/* {errors.presidentDenomination && (
+            </div>
+            <div>
+              <Field
+                label="President of Denomination"
+                name="presidentDenomination"
+                component={FormCustomTextField}
+                value={values.presidentDenomination}
+                onChange={handleChange}
+              />
+              {/* {errors.presidentDenomination && (
               <div className="error">{errors.presidentDenomination}</div>
             )} */}
-          </div>
-          <div>
-            <Field
-              label="Head Quarters"
-              name="headQuarters"
-              component={FormCustomTextField}
-              value={values.headQuarters}
-              onChange={handleChange}
-            />
-            {/* {errors.headQuarters && (
+            </div>
+            <div>
+              <Field
+                label="Head Quarters"
+                name="headQuarters"
+                component={FormCustomTextField}
+                value={values.headQuarters}
+                onChange={handleChange}
+              />
+              {/* {errors.headQuarters && (
               <div className="error">{errors.headQuarters}</div>
             )} */}
-          </div>
-          <div>
-            <Field
-              label="Govt. Registration No"
-              name="registrationNo"
-              component={FormCustomTextField}
-              value={values.registrationNo}
-              onChange={handleChange}
-            />
-            {/* {errors.registrationNo && (
+            </div>
+            <div>
+              <Field
+                label="Govt. Registration No"
+                name="registrationNo"
+                component={FormCustomTextField}
+                value={values.registrationNo}
+                onChange={handleChange}
+              />
+              {/* {errors.registrationNo && (
               <div className="error">{errors.registrationNo}</div>
             )} */}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
