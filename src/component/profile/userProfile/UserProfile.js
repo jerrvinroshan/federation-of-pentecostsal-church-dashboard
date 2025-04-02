@@ -70,7 +70,7 @@ export const UserProfile = () => {
           <TextareaAutosize
             minRows={4}
             placeholder="Address"
-            style={{ minWidth: "450px", overflow: "auto" }}
+            style={{ minWidth: "450px", overflow: "auto",maxWidth: "450px" }}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
