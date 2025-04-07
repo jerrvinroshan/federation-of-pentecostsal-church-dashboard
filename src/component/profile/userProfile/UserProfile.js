@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Button, TextareaAutosize, TextField } from "@mui/material";
 import { userProfileData } from "../../../data/userProfileData";
 
 import profileImg from "../../../assets/image/profileppic.png";
-import { useState } from "react";
 
 export const UserProfile = () => {
   const [firstName, setFirstName] = useState(userProfileData[0].firstName);
@@ -70,7 +70,7 @@ export const UserProfile = () => {
           <TextareaAutosize
             minRows={4}
             placeholder="Address"
-            style={{ minWidth: "450px", overflow: "auto",maxWidth: "450px" }}
+            style={{ minWidth: "450px", overflow: "auto", maxWidth: "450px" }}
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
