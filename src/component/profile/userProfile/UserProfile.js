@@ -1,18 +1,26 @@
 import { useState } from "react";
-import { Button, TextareaAutosize, TextField } from "@mui/material";
-import { userProfileData } from "../../../data/userProfileData";
+import { Button } from "@mui/material";
+import { Field } from "formik";
+import { FormInputField } from "./form/FormInputField";
+import { FormTextArea } from "./form/FormTextArea";
 
-import profileImg from "../../../assets/image/profileppic.png";
+import profileImg from "../../../assets/image/profileppic.png"; 
 
-export const UserProfile = () => {
-  const [firstName, setFirstName] = useState(userProfileData[0].firstName);
-  const [lastName, setLastName] = useState(userProfileData[0].lastName);
-  const [emailId, setEmailId] = useState(userProfileData[0].emailId);
-  const [phoneNumber, setPhoneNumber] = useState(
-    userProfileData[0].phoneNumber
-  );
-  const [address, setAddress] = useState(userProfileData[0].address);
-  const [zone, setZone] = useState(userProfileData[0].zone);
+export const UserProfile = ({ values, handleChange, errors }) => {
+ 
+  const [image, setImage] = useState(profileImg);
+
+  
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="UserProfile__container">
@@ -21,66 +29,80 @@ export const UserProfile = () => {
         <div className="userprofile__profileimagecontainer">
           <img
             className="useProfile__profileimage--img"
-            src={profileImg}
+            src={image}
             alt="User Profile"
           />
           <Button
             component="label"
-            role={undefined}
             variant="contained"
-            tabIndex={-1}
-            style={{ maxWidth: "72px", maxHeight: "30px", padding: "4px 10px" }}
+            style={{
+              maxWidth: "72px",
+              maxHeight: "30px",
+              padding: "4px 10px",
+            }}
           >
             Upload
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              hidden
+            />
           </Button>
         </div>
+
         <form className="userprofile__inputcontainer">
           <div style={{ display: "flex", gap: "12px" }}>
-            <TextField
-              style={{ width: "220px" }}
-              size="small"
+            <Field
               label="First Name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              name="firstName"
+              component={FormInputField}
+              value={values.firstName}
+              onChange={handleChange}
+              error={errors.firstName}
             />
-            <TextField
-              style={{ width: "220px" }}
-              size="small"
+            <Field
               label="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              name="lastName"
+              component={FormInputField}
+              value={values.lastName}
+              onChange={handleChange}
+              error={errors.lastName}
             />
           </div>
           <div style={{ display: "flex", gap: "12px" }}>
-            <TextField
-              style={{ width: "220px" }}
-              size="small"
+            <Field
               label="Email Id"
-              value={emailId}
-              onChange={(e) => setEmailId(e.target.value)}
+              name="emailId"
+              component={FormInputField}
+              value={values.emailId}
+              onChange={handleChange}
+              error={errors.emailId}
             />
-            <TextField
-              style={{ width: "220px" }}
-              size="small"
+            <Field
               label="Phone No"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              name="phoneNo"
+              component={FormInputField}
+              value={values.phoneNo}
+              onChange={handleChange}
+              error={errors.phoneNo}
             />
           </div>
-          <TextareaAutosize
-            minRows={4}
+          <Field
             placeholder="Address"
-            style={{ minWidth: "450px", overflow: "auto", maxWidth: "450px" }}
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            name="address"
+            component={FormTextArea}
+            value={values.address}
+            onChange={handleChange}
+            error={errors.address}
           />
-
-          <TextField
-            style={{ width: "220px" }}
-            size="small"
+          <Field
             label="Zone"
-            value={zone}
-            onChange={(e) => setZone(e.target.value)}
+            name="zone"
+            component={FormInputField}
+            value={values.zone}
+            onChange={handleChange}
+            error={errors.zone}
           />
         </form>
       </div>

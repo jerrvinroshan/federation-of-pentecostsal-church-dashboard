@@ -3,6 +3,11 @@ import { useState } from "react";
 import { UserProfile } from "../component/profile/userProfile/UserProfile";
 import { ChangePassword } from "../component/profile/userProfile/ChangePassword";
 import { Button, Modal, Paper } from "@mui/material";
+import { Form, Formik } from "formik";
+import {
+  settingSchema,
+  userProfileSchema,
+} from "../component/profile/userProfile/ProfileValidationSchema";
 
 export const Profile = ({ isProfileOpen, handleClose }) => {
   const [isUserProfile, setIsUserProfile] = useState(true);
@@ -68,7 +73,22 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
             </NavLink>
           </div>
         </div>
-        <div
+        <Formik
+          initialValues={{
+            //UserProfile
+            firstName: "",
+            lastName: "",
+            emailId: "",
+            phoneNo: "",
+            address: "",
+            zone: "",
+            // ChangePassword
+            oldPassword: "",
+            newPassword: "",
+            confirmPassword: "",
+          }}
+          validationSchema={isUserProfile ? userProfileSchema : settingSchema}
+          onSubmit={(values) => console.log(`First Name: ${values.firstName}`)}
           style={{
             marginTop: "28px",
             display: "flex",
@@ -76,28 +96,45 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
             gap: "24px",
           }}
         >
-          {isUserProfile && <UserProfile />}
-          {isSetting && <ChangePassword />}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "0px",
-            }}
-          >
-            <Button
-              style={{
-                border: "none",
-                padding: "8px 28px",
-                color: "yellow",
-                backgroundColor: "#1B0303",
-                borderRadius: "4px",
-              }}
-            >
-              Update
-            </Button>
-          </div>
-        </div>
+          {({ values, handleChange, errors }) => (
+            <Form style={{ marginTop: "28px" }}>
+              {isUserProfile && (
+                <UserProfile
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                />
+              )}
+              {isSetting && (
+                <ChangePassword
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                />
+              )}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "20px",
+                }}
+              >
+                <Button
+                  style={{
+                    border: "none",
+                    padding: "8px 28px",
+                    color: "yellow",
+                    backgroundColor: "#1B0303",
+                    borderRadius: "4px",
+                  }}
+                  type="submit"
+                >
+                  Update
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </Paper>
     </Modal>
   );

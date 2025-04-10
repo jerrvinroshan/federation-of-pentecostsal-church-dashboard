@@ -2,7 +2,8 @@ import { useState } from "react";
 import { AddMenuZone } from "../features/dashboard/component/zone/AddMenuZone";
 import { AddZoneTable } from "../features/dashboard/component/zone/AddZoneTable";
 import { AddZoneModal } from "../features/dashboard/component/zone/AddZoneModal";
-import { zoneData } from "../features/dashboard/data/zoneData/zoneData";
+// import { zoneData } from "../features/dashboard/data/zoneData/zoneData";
+import zoneData from "../features/dashboard/data/zoneData/zoneData.json";
 
 const AddZone = () => {
   const [zones, setZones] = useState(zoneData);
@@ -16,14 +17,13 @@ const AddZone = () => {
   const handleCloseModal = () => {
     setOpenModal(false);
     setCurrentZone(null);
-    
   };
 
   const handleAddZone = (newZoneName, description) => {
     const newZoneObj = {
       id: zones.length + 1,
       zone: newZoneName,
-      description: description || "No description", 
+      description: description || "",
     };
     setZones([...zones, newZoneObj]);
   };
@@ -34,7 +34,9 @@ const AddZone = () => {
   };
 
   const handleSaveEdit = (editedZone) => {
-    setZones(zones.map((zone) => (zone.id === editedZone.id ? editedZone : zone)));
+    setZones(
+      zones.map((zone) => (zone.id === editedZone.id ? editedZone : zone))
+    );
     handleCloseModal();
   };
 
@@ -46,7 +48,14 @@ const AddZone = () => {
     <div>
       <h1>Add Zone</h1>
       <AddMenuZone handleOpenModal={handleOpenModal} />
-      <div style={{ display: "flex", gap: "40px", flexWrap: "wrap", marginTop: "36px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "40px",
+          flexWrap: "wrap",
+          marginTop: "36px",
+        }}
+      >
         <AddZoneTable
           rows={zones}
           handleEdit={handleEditZone}

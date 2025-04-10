@@ -285,6 +285,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .userprofile__inputcontainer {
   display: flex;

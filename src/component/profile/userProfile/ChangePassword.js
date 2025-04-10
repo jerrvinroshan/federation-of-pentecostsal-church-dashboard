@@ -1,19 +1,41 @@
-import { TextField } from "@mui/material";
+import { Field } from "formik";
+import { FormInputField } from "./form/FormInputField";
 
-export const ChangePassword = () => {
+export const ChangePassword = ({values, handleChange}) => {
   return (
     <div className="changepassword__container">
       <h2>Change Password</h2>
       <div className="input__container">
         <div className="changepassword__inputcontainer">
           <h3>Old Password</h3>
-          <TextField label="Enter Old Password" size='small' style={{width:"220px"}} type="password"/>
+          <Field
+            label="Enter Old Password"
+            name="oldPassword"
+            component={FormInputField}
+            type="password"
+            value={values.oldPassword}
+            onChange={handleChange}
+          />
         </div>
         <div className="changepassword__inputcontainer">
           <h3>New Password</h3>
           <div className="changepassword__newpasswordcontainer">
-            <TextField label="Enter New Password" size='small' style={{width:"220px"}} type="password" />
-            <TextField label="Cofirm New Password" size='small' style={{width:"220px"}} type="password" />
+            <Field
+              label="Enter New Password"
+              name="newPassword"
+              component={FormInputField}
+              type="password"
+              value={values.newPassword}
+              onChange={handleChange}
+            />
+            <Field
+              label="Enter Confirm Password"
+              name="confirmPassword"
+              component={FormInputField}
+              type="password"
+              value={values.confirmPassword}
+              onChange={handleChange}
+            />
           </div>
         </div>
       </div>
