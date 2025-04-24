@@ -89,7 +89,7 @@ export const UserProfile = ({ values, handleChange, errors }) => {
             />
           </div>
           <Field
-            placeholder="Address"
+            label="Address"
             name="address"
             component={FormTextArea}
             value={values.address}

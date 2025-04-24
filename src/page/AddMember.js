@@ -3,6 +3,7 @@ import { AddMemberTable } from "../features/dashboard/component/member/AddMember
 import { AddMenuMember } from "../features/dashboard/component/member/AddMenuMember";
 import { memberData } from "../features/dashboard/data/memberData/memberData";
 import AddMemberProfileModal from "../features/dashboard/component/member/AddMemberProfileModal";
+import { useSelector } from "react-redux";
 
 const AddMember = () => {
   const [members, setMembers] = useState(memberData);
@@ -17,17 +18,20 @@ const AddMember = () => {
     setOpenModal(false);
     setCurrentMember(null);
   };
+  const newMemberData = useSelector((state) => state.member.memberData);
 
-  const handleAddMember = (newMember, address, email, phone, zone) => {
-    const newMemberObj = {
+  const handleAddMember = () => {
+    const newMember = {
       id: members.length > 0 ? members[members.length - 1].id + 1 : 1,
-      name: newMember,
-      address: address,
-      email: email,
-      phone: phone,
-      zone: zone,
+      name: newMemberData.pastorName,
+      email: newMemberData.emailId,
+      phone: newMemberData.contactNo,
+      address: newMemberData.nativePlace,
+      zone: newMemberData.nativePlace,
     };
-    setMembers([...members, newMemberObj]);
+
+    setMembers((prev) => [...prev, newMember]);
+    handleCloseModal();
   };
 
   const handleEditMember = (editedMember) => {
@@ -52,17 +56,26 @@ const AddMember = () => {
     <div>
       <h1>Add Member</h1>
       <AddMenuMember handleOpenModal={handleOpenModal} />
-      <div style={{ display: "flex", gap: "40px", flexWrap: "wrap", marginTop: "36px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "40px",
+          flexWrap: "wrap",
+          marginTop: "36px",
+        }}
+      >
         <AddMemberTable
-          rows={members} 
+          rows={members}
           handleEdit={handleEditMember}
           handleDelete={handleDeleteMember}
         />
-        <AddMemberProfileModal open={openModal}
+        <AddMemberProfileModal
+          open={openModal}
           handleClose={handleCloseModal}
           handleAddMember={handleAddMember}
           handleSaveEdit={handleSaveEdit}
-          member={currentMember}/>
+          member={currentMember}
+        />
       </div>
     </div>
   );

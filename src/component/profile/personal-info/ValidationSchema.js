@@ -77,7 +77,7 @@ export const qualificationSchema = Yup.object({
     .required("Place is Required")
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
-  collegeYearOfPassing: Yup.string().required("Year of Passing is Required"),
+  collegeYearOfPassing: Yup.date().required("Year of Passing is Required"),
   theologicalDegree: Yup.string().required("Degree is Required"),
   theologicalInstitute: Yup.string()
     .required("Institute is Required")
@@ -87,7 +87,7 @@ export const qualificationSchema = Yup.object({
     .required("Place is Required")
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
-  theologicalYearOfPassing: Yup.string().required(
+  theologicalYearOfPassing: Yup.date().required(
     "Year of Passing is Required"
   ),
   ordinationDegree: Yup.string().required("Degree is Required"),
@@ -102,7 +102,7 @@ export const qualificationSchema = Yup.object({
   ordinationDate: Yup.date()
     .typeError("Date Format MM/DD/YYYY")
     .required("Date is required"),
-  ordinationMinistryStartingDate: Yup.string().required(
+  ordinationMinistryStartingDate: Yup.date().required(
     "Ministry Starting Date is Required"
   ),
 });
@@ -237,7 +237,7 @@ export const churchPropertySchema = Yup.object({
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),
   contactDoorNo: Yup.string().required("Door No is required"),
-  conatStreetName: Yup.string()
+  contactStreetName: Yup.string()
     .required("Street Name is required")
     .min(4, "Minimum 4 letter")
     .max(50, "Maximum 50 letters"),

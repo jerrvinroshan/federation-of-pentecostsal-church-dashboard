@@ -31,6 +31,7 @@ export const FormCustomSelectField = ({
   option,
   label,
   errors,
+  onChange,
   ...props
 }) => {
   return (
@@ -45,7 +46,10 @@ export const FormCustomSelectField = ({
           {...field}
           {...props}
           label={label}
-          onChange={(e) => form.setFieldValue(field.name, e.target.value)}
+          onChange={(e) => {
+            form.setFieldValue(field.name, e.target.value);
+            if (onChange) onChange(e.target.value);
+          }}
         >
           {option.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -67,6 +71,7 @@ export const FormCustomDatePickerField = ({
   form,
   errors,
   format = "DD/MM/YYYY",
+  onChange,
   ...props
 }) => {
   return (
@@ -82,14 +87,19 @@ export const FormCustomDatePickerField = ({
             "& .MuiInputLabel-root": {
               top: "-5px",
             },
-            "& .MuiInputBase-input":{
-              paddingBlock:"8.5px"
-            }
+            "& .MuiInputBase-input": {
+              paddingBlock: "8.5px",
+            },
           }}
           label={label}
           {...field}
           {...props}
-          onChange={(newValue) => form.setFieldValue(field.name, newValue)}
+          value={field.value ? dayjs(field.value, format) : null}
+          onChange={(val) => {
+            const iso = val ? val.toISOString() : null;
+            form.setFieldValue(field.name, iso);
+            if (onChange) onChange(iso);
+          }}
           slotProps={{
             textField: {
               error: Boolean(form.errors[field.name]),

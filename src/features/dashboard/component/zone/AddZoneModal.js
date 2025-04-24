@@ -1,6 +1,8 @@
 import { Modal, Paper, TextField, Button } from "@mui/material";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { addZone, editZone } from "../../../../store/zone/zoneSlice";
 
 export const AddZoneModal = ({
   open,
@@ -14,11 +16,10 @@ export const AddZoneModal = ({
       .required("Enter the Zone Name")
       .min(4, "Minimum 4 letter")
       .max(50, "Maximum 50 letters"),
-    description: Yup.string()
-      .min(4, "Minimum 4 letter")
-      .max(50, "Maximum 50 letters"),
+    description: Yup.string().max(50, "Maximum 50 letters").notRequired(),
   });
 
+  const dispatch = useDispatch();
   const handleSubmit = async (values) => {
     if (zone) {
       try {
@@ -26,8 +27,15 @@ export const AddZoneModal = ({
         handleSaveEdit({
           ...zone,
           zone: values.zoneName,
-          description: values.description,
+          description: values.description || "",
         });
+        dispatch(
+          editZone({
+            id: zone.id,
+            zoneName: values.zoneName,
+            description: values.description || "",
+          })
+        );
         console.log("form submitted", values);
       } catch (error) {
         console.error("Validation error", error);
@@ -35,7 +43,15 @@ export const AddZoneModal = ({
     } else {
       try {
         await zoneSchema.validate(values, { abortEarly: false });
-        handleAddZone(values.zoneName, values.description);
+        handleAddZone(values.zoneName, values.description || "");
+
+        dispatch(
+          addZone({
+            zoneName: values.zoneName,
+            description: values.description || "",
+          })
+        );
+
         console.log("form submitted", values);
       } catch (error) {
         console.error("Validation error", error);
@@ -44,6 +60,8 @@ export const AddZoneModal = ({
 
     handleClose();
   };
+
+  const zones = useSelector((state)=>state.zone.zones)
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -65,10 +83,14 @@ export const AddZoneModal = ({
       >
         <h2>{zone ? "Edit Zone" : "Add New Zone"}</h2>
         <Formik
-          initialValues={{
-            zoneName: zone ? zone.zone : "",
-            description: zone ? zone.description : "",
-          }}
+          initialValues={
+            {
+            // zoneName: zone ? zone.zone : "",
+            // description: zone ? zone.description : "",
+            zones
+          }
+        }
+        enableReinitialize={true}
           validationSchema={zoneSchema}
           onSubmit={handleSubmit}
         >

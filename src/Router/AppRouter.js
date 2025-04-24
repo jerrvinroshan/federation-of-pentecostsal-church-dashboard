@@ -107,17 +107,6 @@ const AppRouter = createBrowserRouter([
           },
         ],
       },
-      // Check The personal info page
-      {
-        path: "personal-info",
-        element: <AppLayout />,
-        children: [
-          {
-            index: true,
-            element: <PersonalInformation />,
-          },
-        ],
-      },
     ],
   },
 ]);

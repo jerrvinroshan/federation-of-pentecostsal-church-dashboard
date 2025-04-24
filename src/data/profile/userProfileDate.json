@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "firstName": "Bosco",
+    "lastName": "David",
+    "emailId": "bosco@gmail.com",
+    "phoneNumber": 9568745825,
+    "address": "125,A/1, Street",
+    "zone": "Nagercoil"
+  },
+  {
+    "id": 2,
+    "firstName": "Kevin",
+    "lastName": "Xavier",
+    "emailId": "kevin@gmail.com",
+    "phoneNumber": 8745896589,
+    "address": "129,A/1, Street",
+    "zone": "Nagercoil"
+  }
+]

@@ -1,16 +1,17 @@
-import { TextareaAutosize } from "@mui/material";
+import { TextField } from "@mui/material";
 
-export const FormTextArea = ({ field, form, errors, ...props }) => {
+export const FormTextArea = ({ field, form, ...props }) => {
+  const error = form.touched[field.name] && Boolean(form.errors[field.name]);
+
   return (
-    <div>
-      <TextareaAutosize
-        {...field}
-        {...props}
-        minRows={4}
-        style={{ minWidth: "450px", overflow: "auto", maxWidth: "450px" }}
-        error={!!form.errors[field.name]}
-        helperText={form.errors[field.name]}
-      />
-    </div>
+    <TextField
+      {...field}
+      {...props}
+      multiline
+      minRows={2}
+      fullWidth
+      error={error}
+      helperText={error ? form.errors[field.name] : ""}
+    />
   );
 };

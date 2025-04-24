@@ -42,7 +42,6 @@ const PersonalInformation = () => {
     setIsChurchProperty(true);
   };
   const handleClickNext = () => {
-    //save then move to next tab
     
     if (isPersonalInformation) {
       setIsPersonalInformation(false);

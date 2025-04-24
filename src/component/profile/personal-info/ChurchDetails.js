@@ -2,7 +2,7 @@ import { Field } from "formik";
 import { FormCustomSelectField, FormCustomTextField } from "./FormCustomField";
 import data from "../../../data/data.json";
 
-export const ChurchDetails = ({ values, handleChange }) => {
+export const ChurchDetails = ({ values, handleChange, handleSelectChange }) => {
   const stateNames = ["Tamil Nadu", "Kerala"];
 
   const selectedStates = data.filter((stateObj) =>
@@ -108,6 +108,7 @@ export const ChurchDetails = ({ values, handleChange }) => {
               name="district"
               component={FormCustomSelectField}
               option={districts}
+              onChange={(val) => handleSelectChange("district", val)}
             />
             {/* {errors.district && <div className="error">{errors.district}</div>} */}
           </div>
@@ -117,6 +118,7 @@ export const ChurchDetails = ({ values, handleChange }) => {
               name="thaluk"
               component={FormCustomSelectField}
               option={thaluk(values.district)}
+              onChange={(val) => handleSelectChange("thaluk", val)}
             />
             {/* {errors.thaluk && <div className="error">{errors.thaluk}</div>} */}
           </div>
@@ -126,6 +128,7 @@ export const ChurchDetails = ({ values, handleChange }) => {
               name="village"
               component={FormCustomSelectField}
               option={village(values.district)}
+              onChange={(val) => handleSelectChange("village", val)}
             />
             {/* {errors.village && <div className="error">{errors.village}</div>} */}
           </div>
@@ -186,6 +189,9 @@ export const ChurchDetails = ({ values, handleChange }) => {
                 { label: "Independent", value: "Independent" },
                 { label: "Denomination", value: "Denomination" },
               ]}
+              onChange={(val) =>
+                handleSelectChange("independentDenomination", val)
+              }
             />
             {/* {errors.independentDenomination && (
               <div className="error">{errors.independentDenomination}</div>

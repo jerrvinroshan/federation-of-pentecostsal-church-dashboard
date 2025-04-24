@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "category": "Church",
+    "description": "Value",
+    "subCategorys": [
+      {
+        "subCategory": [
+          {
+            "subCategoryName": "Donation",
+            "donatedBy": "Mark",
+            "description": "value",
+            "amount": "U+20B9 25000"
+          },
+          {
+            "subCategoryName": "Funding",
+            "donatedBy": "Kumar",
+            "description": "value",
+            "amount": "U+20B9 25000"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -5,7 +5,7 @@ import {
 } from "./FormCustomField";
 import dayjs from "dayjs";
 
-export const Qualification = ({ values, handleChange, errors }) => {
+export const Qualification = ({ values, handleChange, handleDateChange }) => {
   return (
     <div>
       <div>
@@ -60,10 +60,10 @@ export const Qualification = ({ values, handleChange, errors }) => {
               name="collegeYearOfPassing"
               component={FormCustomDatePickerField}
               value={dayjs(values.collegeYearOfPassing)}
-              onChange={handleChange}
               views={["year"]}
               minDate={dayjs("1950-01-01")}
               format="YYYY"
+              onChange={(val) => handleDateChange("collegeYearOfPassing", val)}
             />
             {/* {errors.collegeYearOfPassing && (
               <div className="error">{errors.collegeYearOfPassing}</div>
@@ -123,7 +123,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               name="theologicalYearOfPassing"
               component={FormCustomDatePickerField}
               value={dayjs(values.theologicalYearOfPassing)}
-              onChange={handleChange}
+              onChange={(val) =>
+                handleDateChange("theologicalYearOfPassing", val)
+              }
               views={["year"]}
               minDate={dayjs("1950-01-01")}
               format="YYYY"
@@ -186,7 +188,7 @@ export const Qualification = ({ values, handleChange, errors }) => {
               name="ordinationDate"
               component={FormCustomDatePickerField}
               value={dayjs(values.ordinationDate)}
-              onChange={handleChange}
+              onChange={(val) => handleDateChange("ordinationDate", val)}
               format="DD/MM/YYYY"
             />
             {/* {errors.ordinationDate && (
@@ -199,7 +201,9 @@ export const Qualification = ({ values, handleChange, errors }) => {
               name="ordinationMinistryStartingDate"
               component={FormCustomDatePickerField}
               value={dayjs(values.ordinationMinistryStartingDate)}
-              onChange={handleChange}
+              onChange={(val) =>
+                handleDateChange("ordinationMinistryStartingDate", val)
+              }
               format="DD/MM/YYYY"
             />
             {/* {errors.ordinationMinistryStartingDate && (

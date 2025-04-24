@@ -7,7 +7,12 @@ import {
 import { Field } from "formik";
 import data from "../../../data/data.json";
 
-export const PersonalDetails = ({ values, handleChange }) => {
+export const PersonalDetails = ({
+  values,
+  handleChange,
+  handleDateChange,
+  handleSelectChange,
+}) => {
   const DistrictSelect = (state) => {
     const stateObj = data.find((item) => item.state === state);
     return stateObj ? stateObj.districts : [];
@@ -57,7 +62,8 @@ export const PersonalDetails = ({ values, handleChange }) => {
               label="DOB"
               name="pastorDOB"
               value={dayjs(values.pastorDOB)}
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={(val) => handleDateChange("pastorDOB", val)}
               format="DD/MM/YYYY"
             />
             {/* {errors.pastorDOB && (
@@ -97,6 +103,7 @@ export const PersonalDetails = ({ values, handleChange }) => {
                 label: stateObj.state,
                 value: stateObj.state,
               }))}
+              onChange={(val) => handleSelectChange("nativeState", val)}
             />
             {/* {errors.nativeState && (
               <div className="error">{errors.nativeState}</div>
@@ -111,6 +118,7 @@ export const PersonalDetails = ({ values, handleChange }) => {
                 label: districtObj.district,
                 value: districtObj.district,
               }))}
+              onChange={(val) => handleSelectChange("nativeDistrict", val)}
             />
             {/* {errors.nativeDistrict && (
               <div className="error">{errors.nativeDistrict}</div>
@@ -122,6 +130,7 @@ export const PersonalDetails = ({ values, handleChange }) => {
               name="nativePlace"
               component={FormCustomSelectField}
               option={PlaceSelect(values.nativeDistrict)}
+              onChange={(val) => handleSelectChange("nativePlace", val)}
             />
             {/* {errors.nativePlace && (
               <div className="error">{errors.nativePlace}</div>
@@ -183,6 +192,7 @@ export const PersonalDetails = ({ values, handleChange }) => {
                 { label: "Single", value: "Single" },
                 { label: "Married", value: "Married" },
               ]}
+              onChange={(val) => handleSelectChange("maritalStatus", val)}
             />
             {/* {errors.maritalStatus && (
               <div className="error">{errors.maritalStatus}</div>
@@ -207,8 +217,8 @@ export const PersonalDetails = ({ values, handleChange }) => {
                 name="pastorWifeDOB"
                 component={FormCustomDatePickerField}
                 value={dayjs(values.pastorWifeDOB)}
-                onChange={handleChange}
                 format="DD/MM/YYYY"
+                onChange={(val) => handleDateChange("pastorWifeDOB", val)}
               />
               {/* {errors.pastorWifeDOB && (
               <div className="error">{errors.pastorWifeDOB}</div>

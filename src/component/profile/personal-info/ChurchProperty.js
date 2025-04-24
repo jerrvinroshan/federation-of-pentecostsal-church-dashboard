@@ -7,7 +7,7 @@ import {
 import { Field } from "formik";
 import data from "../../../data/data.json"
 
-export const ChurchProperty = ({ values, handleChange }) => {
+export const ChurchProperty = ({ values, handleChange,handleDateChange, handleSelectChange }) => {
   const stateNames = ["Tamil Nadu", "Kerala"];
 
   const selectedStates = data.filter((stateObj) =>
@@ -83,7 +83,7 @@ export const ChurchProperty = ({ values, handleChange }) => {
                   name="registerDate"
                   component={FormCustomDatePickerField}
                   value={dayjs(values.registerDate)}
-                  onChange={handleChange}
+                  onChange={(val) => handleDateChange("registerDate", val)}
                   format="DD/MM/YYYY"
                 />
                 {/* {errors.registerDate && (
@@ -133,7 +133,7 @@ export const ChurchProperty = ({ values, handleChange }) => {
                   name="rentalRegisterDate"
                   component={FormCustomDatePickerField}
                   value={dayjs(values.rentalRegisterDate)}
-                  onChange={handleChange}
+                  onChange={(val) => handleDateChange("rentalRegisterDate", val)}
                   format="DD/MM/YYYY"
                 />
                 {/* {errors.rentalRegisterDate && (
@@ -194,9 +194,9 @@ export const ChurchProperty = ({ values, handleChange }) => {
           <div>
             <Field
               label="Street Name"
-              name="conatStreetName"
+              name="contactStreetName"
               component={FormCustomTextField}
-              value={values.conatStreetName}
+              value={values.contactStreetName}
               onChange={handleChange}
             />
             {/* {errors.conatStreetName && (
@@ -221,6 +221,7 @@ export const ChurchProperty = ({ values, handleChange }) => {
               name="contactDistrict"
               component={FormCustomSelectField}
               option={districts}
+              onChange={(val)=>handleSelectChange("contactDistrict",val)}
             />
             {/* {errors.contactDistrict && (
               <div className="error">{errors.contactDistrict}</div>
@@ -232,6 +233,7 @@ export const ChurchProperty = ({ values, handleChange }) => {
               name="contactThaluk"
               component={FormCustomSelectField}
               option={thaluk(values.contactDistrict)}
+              onChange={(val)=>handleSelectChange("contactThaluk",val)}
             />
             {/* {errors.contactThaluk && (
               <div className="error">{errors.contactThaluk}</div>
@@ -243,6 +245,7 @@ export const ChurchProperty = ({ values, handleChange }) => {
               name="contactVillage"
               component={FormCustomSelectField}
               option={village(values.contactDistrict)}
+              onChange={(val)=>handleSelectChange("contactVillage",val)}
             />
             {/* {errors.contactVillage && (
               <div className="error">{errors.contactVillage}</div>
