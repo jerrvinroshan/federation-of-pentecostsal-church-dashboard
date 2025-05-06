@@ -1,6 +1,5 @@
 import { Box, Button, Modal } from "@mui/material";
 import { useState } from "react";
-// import { Link, NavLink } from "react-router-dom";
 import { PersonalDetails } from "../../../../component/profile/personal-info/PersonalDetails";
 import { Qualification } from "../../../../component/profile/personal-info/Qualification";
 import { ChurchDetails } from "../../../../component/profile/personal-info/ChurchDetails";
@@ -14,8 +13,12 @@ import {
 } from "../../../../component/profile/personal-info/ValidationSchema";
 import AddMemberPreview from "./modal/AddMemberPreview";
 import { useDispatch, useSelector } from "react-redux";
-import { resetForm, updateForm } from "../../../../store/member/personal-member-form/personalMemberSlice";
+import {
+  resetForm,
+  updateForm,
+} from "../../../../store/member/personal-member-form/personalMemberSlice";
 import dayjs from "dayjs";
+import CloseIcon from "@mui/icons-material/Close";
 
 const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
   const [currentTab, setCurrentTab] = useState(1);
@@ -26,7 +29,7 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
     if (Object.keys(errors).length === 0) {
       setCurrentTab(currentTab + 1);
     } else {
-      console.log("Validation failed, stay on current step:", errors);
+      console.log("Validation failed", errors);
     }
   };
 
@@ -38,7 +41,6 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
     if (Object.keys(errors).length === 0) {
       setCurrentTab(1);
       setModalOpen(true);
-      
     } else {
       console.log("Validation failed", errors);
     }
@@ -46,21 +48,21 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const memberData = useSelector((state) => state.member.memberData);
-  const dispatch = useDispatch()
-  const handleCloseModal = ()=> {
-    setModalOpen(false)
-    handleAddMember()
-    dispatch(resetForm())
-  }
-  const handleEditModal =()=>{
-    setModalOpen(false)
-  }
+  const dispatch = useDispatch();
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    handleAddMember();
+    dispatch(resetForm());
+  };
+  const handleEditModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <Modal
       style={{ backgroundColor: "#fcfcfc" }}
       open={open}
-      onClose={handleClose}
+      // onClose={handleClose}
       className="personalinfo__container"
     >
       <Box
@@ -75,63 +77,8 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
           padding: "24px",
           border: "none",
           borderRadius: "8px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
         }}
       >
-        <div className="profile__headcontainer">
-          <h1>Personal Details</h1>
-          <div style={{ display: "flex", gap: "16px" }}>
-            <p
-              className="profile__userprofile"
-              style={{
-                fontWeight: currentTab === 1 ? "700" : "400",
-                borderBottom: currentTab === 1 ? "2px solid #1B0303" : "none",
-                cursor:"pointer"
-              }}
-              onClick={()=>setCurrentTab(1)}
-            >
-              Personal Information
-            </p>
-            <p
-              className="profile__userprofile"
-              style={{
-                fontWeight: currentTab === 2 ? "700" : "400",
-                borderBottom: currentTab === 2 ? "2px solid #1B0303" : "none",
-                cursor:"pointer"
-
-              }}
-              onClick={()=>setCurrentTab(2)}
-            >
-              Educational Qualification
-            </p>
-            <p
-              className="profile__userprofile"
-              style={{
-                fontWeight: currentTab === 3 ? "700" : "400",
-                borderBottom: currentTab === 3 ? "2px solid #1B0303" : "none",
-                cursor:"pointer"
-
-              }}
-              onClick={()=>setCurrentTab(3)}
-            >
-              Church Detail
-            </p>
-            <p
-              className="profile__userprofile"
-              style={{
-                fontWeight: currentTab === 4 ? "700" : "400",
-                borderBottom: currentTab === 4 ? "2px solid #1B0303" : "none",
-                cursor:"pointer"
-
-              }}
-              onClick={()=>setCurrentTab(4)}
-            >
-              Church Property
-            </p>
-          </div>
-        </div>
         <Formik
           initialValues={memberData}
           enableReinitialize={true}
@@ -154,7 +101,7 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
             gap: "56px",
           }}
         >
-          {({ values, handleChange, validateForm,setFieldValue, errors }) => {
+          {({ values, handleChange, validateForm, setFieldValue, errors }) => {
             const handleSyncedChange = (e) => {
               handleChange(e);
               dispatch(updateForm({ [e.target.name]: e.target.value }));
@@ -164,16 +111,97 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
               setFieldValue(fieldName, value);
               dispatch(updateForm({ [fieldName]: value }));
             };
-            
+
             const handleDateChange = (fieldName, value) => {
-              const isoDate = value ? dayjs(value).toISOString() : null;
-              const date = isoDate.split("T");
-              setFieldValue(fieldName, date);
-              dispatch(updateForm({ [fieldName]: date }));
+              if (!value) {
+                setFieldValue(fieldName, "");
+                dispatch(updateForm({ [fieldName]: "" }));
+                return;
+              }
+
+              const formattedDate = dayjs(value).format("YYYY-MM-DD");
+              setFieldValue(fieldName, formattedDate);
+              dispatch(updateForm({ [fieldName]: formattedDate }));
             };
-            
+            const handleTabChange = async (targetTab) => {
+              const errors = await validateForm();
+              if (Object.keys(errors).length === 0) {
+                setCurrentTab(targetTab);
+              } else {
+                console.log("Validation failed", errors);
+              }
+            };
+
             return (
-              <Form>
+              <Form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                <div className="profile__headcontainer">
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <h1>Personal Details</h1>
+                    <CloseIcon
+                      onClick={handleClose}
+                      sx={{ cursor: "pointer" }}
+                      color="error"
+                    />
+                  </div>
+                  <div style={{ display: "flex", gap: "16px" }}>
+                    <p
+                      className="profile__userprofile"
+                      style={{
+                        fontWeight: currentTab === 1 ? "700" : "400",
+                        borderBottom:
+                          currentTab === 1 ? "2px solid #1B0303" : "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleTabChange(1)}
+                    >
+                      Personal Information
+                    </p>
+                    <p
+                      className="profile__userprofile"
+                      style={{
+                        fontWeight: currentTab === 2 ? "700" : "400",
+                        borderBottom:
+                          currentTab === 2 ? "2px solid #1B0303" : "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleTabChange(2)}
+                    >
+                      Educational Qualification
+                    </p>
+                    <p
+                      className="profile__userprofile"
+                      style={{
+                        fontWeight: currentTab === 3 ? "700" : "400",
+                        borderBottom:
+                          currentTab === 3 ? "2px solid #1B0303" : "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleTabChange(3)}
+                    >
+                      Church Detail
+                    </p>
+                    <p
+                      className="profile__userprofile"
+                      style={{
+                        fontWeight: currentTab === 4 ? "700" : "400",
+                        borderBottom:
+                          currentTab === 4 ? "2px solid #1B0303" : "none",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleTabChange(4)}
+                    >
+                      Church Property
+                    </p>
+                  </div>
+                </div>
                 {currentTab === 1 && (
                   <PersonalDetails
                     handleChange={handleSyncedChange}
@@ -189,6 +217,7 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
                     values={values}
                     errors={errors}
                     handleDateChange={handleDateChange}
+                    handleSelectChange={handleSelectChange}
                   />
                 )}
                 {currentTab === 3 && (
@@ -265,7 +294,11 @@ const AddMemberProfileModal = ({ open, handleClose, handleAddMember }) => {
             );
           }}
         </Formik>
-        <AddMemberPreview open={modalOpen} handleCloseModal={handleCloseModal} handleEditModal={handleEditModal}/>
+        <AddMemberPreview
+          open={modalOpen}
+          handleCloseModal={handleCloseModal}
+          handleEditModal={handleEditModal}
+        />
       </Box>
     </Modal>
   );

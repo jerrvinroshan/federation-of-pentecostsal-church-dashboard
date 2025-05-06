@@ -2,10 +2,16 @@ import { Field } from "formik";
 import {
   FormCustomDatePickerField,
   FormCustomTextField,
+  FormCustomSelectField,
 } from "./FormCustomField";
 import dayjs from "dayjs";
 
-export const Qualification = ({ values, handleChange, handleDateChange }) => {
+export const Qualification = ({
+  values,
+  handleChange,
+  handleDateChange,
+  handleSelectChange,
+}) => {
   return (
     <div>
       <div>
@@ -22,10 +28,24 @@ export const Qualification = ({ values, handleChange, handleDateChange }) => {
             <Field
               label="Degree"
               name="collegeDegree"
+              component={FormCustomSelectField}
+              option={[
+                { label: "B.E", value: "B.E" },
+                { label: "M.E", value: "M.E" },
+                { label: "B.Sc", value: "B.Sc" },
+                { label: "M.Sc", value: "M.Sc" },
+                { label: "B.A", value: "B.A" },
+                { label: "MBA", value: "MBA" },
+              ]}
+              onChange={(val) => handleSelectChange("collegeDegree", val)}
+            />
+            {/* <Field
+              label="Degree"
+              name="collegeDegree"
               component={FormCustomTextField}
               value={values.collegeDegree}
               onChange={handleChange}
-            />
+            /> */}
             {/* {errors.collegeDegree && (
               <div className="error">{errors.collegeDegree}</div>
             )} */}

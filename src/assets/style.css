@@ -176,6 +176,7 @@
   font-size: 12px;
   display: flex;
   justify-content: end;
+  cursor: pointer;
 }
 .today {
   border: 1px solid black;
@@ -395,4 +396,22 @@
 .profile__userprofile .active {
   font-weight: 700;
   border-bottom: 2px solid #1b0303;
+}
+
+/* Add Member Preview */
+
+.addMemberPreview__header {
+  font-family: "Bebas Neue", serif;
+  font-weight: 400;
+}
+
+.addMemberPreview__ContentHeader,
+.addMemberPreview__Content {
+  font-family: "Roboto", sans-serif;
+}
+.addMemberPreview__Content > strong{
+  font-size: 16px;
+}
+.addMemberPreview__Content > span{
+  font-size: 14px;
 }

@@ -5,7 +5,8 @@
     "address": "154,A/1, Mark street, Nagercoil",
     "email": "smaple@mail.com",
     "phone": "86587 45875",
-    "zone": "Nagercoil"
+    "zone": "Nagercoil",
+    "pastorDOB":"12/02/2001"
   },
   {
     "id": 2,

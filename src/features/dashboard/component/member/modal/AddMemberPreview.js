@@ -65,6 +65,13 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
     gap: "24px",
   };
 
+  const btnContainer = {
+    display: "flex",
+    gap: "24px",
+    justifyContent: "end",
+    padding: "24px",
+  };
+
   return (
     <>
       <Modal
@@ -76,32 +83,34 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
           <Paper>
             <div style={modalContainerStyle}>
               <div style={headerStyle}>
-                <h1>Member Perview</h1>
-                <CloseIcon onClick={handleCloseModal} />
+                <h1 className="addMemberPreview__header">Member Perview</h1>
+                <CloseIcon onClick={handleCloseModal} color="error" />
               </div>
             </div>
             <div style={contentContainerStyle}>
               <div style={containerStyle}>
                 <div style={contentSubContainerStyle}>
-                  <h2>Personal Detail</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Personal Detail
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Pastor Name : </strong>
                       <span>{memberData.pastorName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Pastor DOB : </strong>
                       <span>{formatDate(memberData.pastorDOB)}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Father Name : </strong>
                       <span>{memberData.fatherName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Mother Name : </strong>
                       <span>{memberData.motherName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Native State : </strong>
                       <span>{memberData.nativeState}</span>
                     </p>
@@ -109,19 +118,19 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                       <strong>Native District : </strong>
                       <span>{memberData.nativeDistrict}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Native Place : </strong>
                       <span>{memberData.nativePlace}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Contact No : </strong>
                       <span>{memberData.contactNo}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Emergency Contact No : </strong>
                       <span>{memberData.emergencyContactNo}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Email : </strong>
                       <span>{memberData.emailId}</span>
                     </p>
@@ -129,28 +138,30 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                 </div>
                 {/* Marital Status */}
                 <div style={contentSubContainerStyle}>
-                  <h2>Marital Status</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Marital Status
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Marital Status : </strong>
                       <span>{memberData.maritalStatus}</span>
                     </p>
                     {memberData.maritalStatus === "Married" && (
                       <div>
-                        <p>
+                        <p className="addMemberPreview__Content">
                           <strong>Wife Name : </strong>
                           <span>{memberData.wifeName}</span>
                         </p>
-                        <p>
+                        <p className="addMemberPreview__Content">
                           <strong>DOB : </strong>
                           <span>{formatDate(memberData.pastorWifeDOB)}</span>
                         </p>
-                        <p>
+                        <p className="addMemberPreview__Content">
                           <strong>First Child Name : </strong>
                           <span>{memberData.firstChildName}</span>
                         </p>
                         {memberData.secondChildName === "" ? null : (
-                          <p>
+                          <p className="addMemberPreview__Content">
                             <strong>Second Child Name : </strong>
                             <span>{memberData.secondChildName}</span>
                           </p>
@@ -163,42 +174,46 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
               {/* Qualification */}
               <div style={containerStyle}>
                 <div style={contentSubContainerStyle}>
-                  <h2>Educational Qualification</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Educational Qualification
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Degree : </strong>
                       <span>{memberData.collegeDegree}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Institute : </strong>
                       <span>{memberData.collegeInstitute}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Place : </strong>
                       <span>{memberData.collegePlace}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Year of Passing : </strong>
                       <span>{formatYear(memberData.collegeYearOfPassing)}</span>
                     </p>
                   </div>
                 </div>
                 <div style={contentSubContainerStyle}>
-                  <h2>Theological Qualification</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Theological Qualification
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Degree : </strong>
                       <span>{memberData.theologicalDegree}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Institute : </strong>
                       <span>{memberData.theologicalInstitute}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Place : </strong>
                       <span>{memberData.theologicalPlace}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Year of Passing : </strong>
                       <span>
                         {formatYear(memberData.theologicalYearOfPassing)}
@@ -207,25 +222,27 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                   </div>
                 </div>
                 <div style={contentSubContainerStyle}>
-                  <h2>Ordination Detail</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Ordination Detail
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Degree : </strong>
                       <span>{memberData.ordinationDegree}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Institute : </strong>
                       <span>{memberData.ordinationInstitute}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Place : </strong>
                       <span>{memberData.ordinationPlace}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Date : </strong>
                       <span>{formatDate(memberData.ordinationDate)}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Ministry Starting Date : </strong>
                       <span>
                         {formatDate(memberData.ordinationMinistryStartingDate)}
@@ -237,9 +254,11 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
               {/* Church Detail */}
               <div style={containerStyle}>
                 <div style={contentSubContainerStyle}>
-                  <h2>Church Detail</h2>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Church Detail
+                  </h2>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Church Name : </strong>
                       <span>{memberData.churchName}</span>
                     </p>
@@ -247,43 +266,43 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                       <strong>Door No : </strong>
                       <span>{memberData.doorNo}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Street Name : </strong>
                       <span>{memberData.streetName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Panchayat : </strong>
                       <span>{memberData.panchayat}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>District : </strong>
                       <span>{memberData.district}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Thaluk : </strong>
                       <span>{memberData.thaluk}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Village : </strong>
                       <span>{memberData.village}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Assembly Constituency : </strong>
                       <span>{memberData.assemblyConstituency}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Parliament Constituency : </strong>
                       <span>{memberData.parliamentConstituency}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Local Police Station : </strong>
                       <span>{memberData.localPoliceStation}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Church Website : </strong>
                       <span>{memberData.churchWebsite}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Independent / Denomination : </strong>
                       <span>{memberData.independentDenomination}</span>
                     </p>
@@ -291,21 +310,23 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                 </div>
                 {memberData.independentDenomination === "Denomination" && (
                   <div style={contentSubContainerStyle}>
-                    <h2>Trust / Society</h2>
+                    <h2 className="addMemberPreview__ContentHeader">
+                      Trust / Society
+                    </h2>
                     <div>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Name of Denomination : </strong>
                         <span>{memberData.nameOfDenomination}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Name of Denomination : </strong>
                         <span>{memberData.presidentDenomination}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Head Quarters : </strong>
                         <span>{memberData.headQuarters}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Govt.Registration No : </strong>
                         <span>{memberData.registrationNo}</span>
                       </p>
@@ -316,34 +337,46 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
               {/* Church Property */}
               <div style={containerStyleNoBorder}>
                 <div style={contentSubContainerStyle}>
-                  <h2>Church Property</h2>
-                  <div>
+                  <h2 className="addMemberPreview__ContentHeader">
+                    Church Property
+                  </h2>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "12px",
+                    }}
+                  >
                     <div>
-                      <h3>Own Property</h3>
-                      <p>
+                      <h3 className="addMemberPreview__ContentHeader">
+                        Own Property
+                      </h3>
+                      <p className="addMemberPreview__Content">
                         <strong>Owner Name : </strong>
                         <span>{memberData.ownerName}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Register Date : </strong>
                         <span>{formatDate(memberData.registerDate)}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Any Legal Issue : </strong>
                         <span>{memberData.ownLegalIssues}</span>
                       </p>
                     </div>
                     <div>
-                      <h5>Rental Property</h5>
-                      <p>
+                      <h3 className="addMemberPreview__ContentHeader">
+                        Rental Property
+                      </h3>
+                      <p className="addMemberPreview__Content">
                         <strong>Owner Name : </strong>
                         <span>{memberData.rentalownerName}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Register Date : </strong>
                         <span>{formatDate(memberData.rentalRegisterDate)}</span>
                       </p>
-                      <p>
+                      <p className="addMemberPreview__Content">
                         <strong>Any Legal Issue : </strong>
                         <span>{memberData.rentalLegalIssues}</span>
                       </p>
@@ -351,35 +384,38 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                   </div>
                 </div>
                 <div style={contentSubContainerStyle}>
-                  <h5 style={{ fontSize: "16px", maxWidth: "200px" }}>
+                  <h5
+                    className="addMemberPreview__ContentHeader"
+                    style={{ fontSize: "16px", maxWidth: "240px" }}
+                  >
                     Permanent Address / Address for Communication
                   </h5>
                   <div>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Church Name : </strong>
                       <span>{memberData.contactChurchName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Door No : </strong>
                       <span>{memberData.contactDoorNo}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Street Name : </strong>
                       <span>{memberData.contactStreetName}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Panchayat : </strong>
                       <span>{memberData.contactPanchayat}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>District : </strong>
                       <span>{memberData.contactDistrict}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Thaluk : </strong>
                       <span>{memberData.contactThaluk}</span>
                     </p>
-                    <p>
+                    <p className="addMemberPreview__Content">
                       <strong>Village : </strong>
                       <span>{memberData.contactVillage}</span>
                     </p>
@@ -387,16 +423,10 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                display: "flex",
-                gap: "24px",
-                justifyContent: "end",
-                padding: "24px",
-              }}
-            >
+            <div style={btnContainer}>
               <Button
                 variant="outlined"
+                sx={{ color: "#1B0303", border: "1px solid #1B0303" }}
                 onClick={() => {
                   handleEditModal();
                 }}
@@ -405,6 +435,7 @@ const AddMemberPreview = ({ open, handleCloseModal, handleEditModal }) => {
               </Button>
               <Button
                 variant="contained"
+                sx={{ color: "yellow", backgroundColor: " #1B0303" }}
                 onClick={() => {
                   handleCloseModal();
                 }}

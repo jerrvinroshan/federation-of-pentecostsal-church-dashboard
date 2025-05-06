@@ -11,7 +11,6 @@ import AddLedger from "../page/Accounting/AddLedger";
 import ViewLedger from "../page/Accounting/ViewLedger";
 import LedgerReport from "../page/Report/LedgerReport";
 import AddPaymentMethod from "../page/AddPaymentMethod";
-import PersonalInformation from "../page/PersonalInformation";
 
 const AppRouter = createBrowserRouter([
   {
