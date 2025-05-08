@@ -108,7 +108,7 @@ const personalDetail = (data) => {
   return [
     {
       pastorName: data.pastorName,
-      pastorDOB: data.pastorDOB[0],
+      pastorDOB: data.pastorDOB,
       fatherName: data.fatherName,
       motherName: data.motherName,
       nativeState: data.nativeState,

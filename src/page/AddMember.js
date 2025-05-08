@@ -4,7 +4,7 @@ import { AddMenuMember } from "../features/dashboard/component/member/AddMenuMem
 import { memberData } from "../features/dashboard/data/memberData/memberData";
 import AddMemberProfileModal from "../features/dashboard/component/member/AddMemberProfileModal";
 import { useDispatch, useSelector } from "react-redux";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import {
   loadForm,
   resetForm,
@@ -17,7 +17,7 @@ import {
 } from "../services/memberAPI";
 
 const AddMember = () => {
-  const [members, setMembers] = useState(memberData);
+  // const [members, setMembers] = useState(memberData);
   const [openModal, setOpenModal] = useState(false);
   const [currentMember, setCurrentMember] = useState(null);
 
@@ -32,31 +32,31 @@ const AddMember = () => {
     setCurrentMember(null);
   };
   const newMemberData = useSelector((state) => state.member.memberData);
-  const formatDate = (dateInput) => {
-    const parsedDate = dayjs(dateInput);
+  // const formatDate = (dateInput) => {
+  //   const parsedDate = dayjs(dateInput);
 
-    if (!parsedDate.isValid()) return "-";
+  //   if (!parsedDate.isValid()) return "-";
 
-    return parsedDate.format("DD/MM/YYYY");
-  };
-  const handleAddMember = () => {
-    const newMember = {
-      id: members.length > 0 ? members[members.length - 1].id + 1 : 1,
-      pastorName: newMemberData.pastorName,
-      emailId: newMemberData.emailId,
-      contactNo: newMemberData.contactNo,
-      pastorDOB: formatDate(newMemberData.pastorDOB),
-      zone: newMemberData.nativePlace,
-    };
+  //   return parsedDate.format("DD/MM/YYYY");
+  // };
+  // const handleAddMember = () => {
+  //   const newMember = {
+  //     id: members.length > 0 ? members[members.length - 1].id + 1 : 1,
+  //     pastorName: newMemberData.pastorName,
+  //     emailId: newMemberData.emailId,
+  //     contactNo: newMemberData.contactNo,
+  //     pastorDOB: formatDate(newMemberData.pastorDOB),
+  //     zone: newMemberData.nativePlace,
+  //   };
 
-    setMembers((prev) => [...prev, newMember]);
-    handleCloseModal();
-  };
+  //   setMembers((prev) => [...prev, newMember]);
+  //   handleCloseModal();
+  // };
 
-  const handleEditMember = (editedMember) => {
-    setCurrentMember(editedMember);
-    handleOpenModal();
-  };
+  // const handleEditMember = (editedMember) => {
+  //   setCurrentMember(editedMember);
+  //   handleOpenModal();
+  // };
 
   // const handleSaveEdit = (editedMember) => {
   //   setMembers(
@@ -95,7 +95,7 @@ const AddMember = () => {
   };
   const handleSaveEdit = async (editedMember) => {
     const editSave = await putMemberAPI(editedMember);
-    setMembers((prevMembers) =>
+    setCurrentMember((prevMembers) =>
       prevMembers.map((member) =>
         member.id === editedMember.id ? editSave : member
       )
@@ -103,12 +103,20 @@ const AddMember = () => {
     setRefresh((prev) => !prev);
     handleCloseModal();
   };
+  const [loading, setLoading] = useState();
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetchMemberAPI();
-      console.log(result);
-      setData(result);
-      setMembers(result);
+      try {
+        setLoading(true);
+        const result = await fetchMemberAPI();
+        console.log(result);
+        setData(result);
+        // setMembers(result);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, [refresh]);
@@ -129,6 +137,7 @@ const AddMember = () => {
           rows={data}
           handleEdit={handleEdit}
           handleDelete={handleDeleteMember}
+          loading={loading}
         />
         <AddMemberProfileModal
           open={openModal}

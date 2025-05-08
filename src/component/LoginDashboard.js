@@ -3,6 +3,9 @@ import logo from "../assets/image/login-logo.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { getUserProfile } from "../services/profileAPI";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/member/profileSlice";
 
 export const LoginDashboard = () => {
   const [loginData, setLoginData] = useState({
@@ -20,22 +23,40 @@ export const LoginDashboard = () => {
   });
 
   const { userName, password } = loginData;
+  const dispatch = useDispatch();
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
       await LoginSchma.validate(loginData, { abortEarly: false });
-    } catch (error) {
-      const newErrors = {};
-
-      error.inner.forEach((err) => {
-        newErrors[err.path] = err.message;
-      });
-      setError(newErrors);
-    }
-    if (userName === "admin" && password === "Password@1") {
+      
+      // Simulate an API call to check user credentials
+      const userList = await getUserProfile(userName);
+      const user = userList[0];
+      if (!user) {
+        setError({ userName: "User not found" });
+        return;
+      }
+      if (user.password !== password) {
+        setError({ password: "Invalid Password" });
+        return;
+      }
+      setError("");
       navigate("/dashboard");
-    } else {
-      console.log("Invalid credentials. Please try again.");
+      dispatch(setUser(user));
+      console.log("Login successful", setUser(user));
+    } catch (error) {
+      if (error.name === "ValidationError") {
+        const newErrors = {};
+
+        error.inner.forEach((err) => {
+          newErrors[err.path] = err.message;
+        });
+        setError(newErrors);
+      } else {
+        console.error("Login error:", error);
+        setError({ userName: "User not found" });
+      }
     }
   };
   const handleChange = (e) => {
@@ -45,6 +66,7 @@ export const LoginDashboard = () => {
       [name]: value,
     });
   };
+
   return (
     <div className="login__container--center">
       <div className="login__container">

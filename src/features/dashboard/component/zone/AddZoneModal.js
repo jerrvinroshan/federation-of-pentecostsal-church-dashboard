@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { addZone, editZone } from "../../../../store/zone/zoneSlice";
+import CloseIcon from "@mui/icons-material/Close";
 
 export const AddZoneModal = ({
   open,
@@ -61,10 +62,10 @@ export const AddZoneModal = ({
     handleClose();
   };
 
-  const zones = useSelector((state)=>state.zone.zones)
+  const zones = useSelector((state) => state.zone.zones);
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open}>
       <Paper
         style={{
           position: "absolute",
@@ -81,16 +82,27 @@ export const AddZoneModal = ({
           gap: "24px",
         }}
       >
-        <h2>{zone ? "Edit Zone" : "Add New Zone"}</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h2>{zone ? "Edit Zone" : "Add New Zone"}</h2>
+          <CloseIcon
+            sx={{ cursor: "pointer" }}
+            color="error"
+            onClick={handleClose}
+          />
+        </div>
         <Formik
-          initialValues={
-            {
+          initialValues={{
             // zoneName: zone ? zone.zone : "",
             // description: zone ? zone.description : "",
-            zones
-          }
-        }
-        enableReinitialize={true}
+            zones,
+          }}
+          enableReinitialize={true}
           validationSchema={zoneSchema}
           onSubmit={handleSubmit}
         >
@@ -108,6 +120,8 @@ export const AddZoneModal = ({
                 helperText={touched.zoneName && errors.zoneName}
               />
               <TextField
+                multiline
+                minRows={3}
                 fullWidth
                 label="Description"
                 variant="outlined"
@@ -119,6 +133,18 @@ export const AddZoneModal = ({
                 error={touched.description && Boolean(errors.description)}
                 helperText={touched.description && errors.description}
               />
+              {/* <TextField
+                fullWidth
+                label="Description"
+                variant="outlined"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                sx={{ mt: 2 }}
+                error={touched.description && Boolean(errors.description)}
+                helperText={touched.description && errors.description}
+              /> */}
               <Button
                 fullWidth
                 variant="contained"

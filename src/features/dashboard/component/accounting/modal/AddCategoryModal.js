@@ -1,6 +1,7 @@
 import { Modal, Paper, TextField, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import CloseIcon from '@mui/icons-material/Close';
 
 export const AddCategoryModal = ({
   open,
@@ -62,9 +63,11 @@ export const AddCategoryModal = ({
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open}>
       <Paper sx={style}>
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
         <h2>{category ? "Edit Category" : "Add New Category"}</h2>
+        <CloseIcon sx={{cursor:"pointer"}} color="error" onClick={handleClose}/></div>
         <Formik
           initialValues={{
             categoryTitle: category ? category.category : "",

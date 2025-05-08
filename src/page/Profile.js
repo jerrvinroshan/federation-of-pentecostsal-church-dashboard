@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { use, useState } from "react";
 import { UserProfile } from "../component/profile/userProfile/UserProfile";
 import { ChangePassword } from "../component/profile/userProfile/ChangePassword";
 import { Button, Modal, Paper } from "@mui/material";
@@ -8,10 +8,14 @@ import {
   settingSchema,
   userProfileSchema,
 } from "../component/profile/userProfile/ProfileValidationSchema";
+import { useSelector } from "react-redux";
 
 export const Profile = ({ isProfileOpen, handleClose }) => {
   const [isUserProfile, setIsUserProfile] = useState(true);
   const [isSetting, setISetting] = useState(false);
+
+  const userData = useSelector((state) => state.profile.user);
+  console.log(userData.firstName);
 
   const handleUserProfileClick = (e) => {
     e.stopPropagation();
@@ -74,19 +78,21 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
           </div>
         </div>
         <Formik
-          initialValues={{
-            //UserProfile
-            firstName: "",
-            lastName: "",
-            emailId: "",
-            phoneNo: "",
-            address: "",
-            zone: "",
-            // ChangePassword
-            oldPassword: "",
-            newPassword: "",
-            confirmPassword: "",
-          }}
+          initialValues={userData
+          //   {
+          //   //UserProfile
+          //   firstName: "",
+          //   lastName: "",
+          //   emailId: "",
+          //   phoneNo: "",
+          //   address: "",
+          //   zone: "",
+          //   // ChangePassword
+          //   oldPassword: "",
+          //   newPassword: "",
+          //   confirmPassword: "",
+          // }
+        }
           validationSchema={isUserProfile ? userProfileSchema : settingSchema}
           onSubmit={(values) => console.log(`First Name: ${values.firstName}`)}
           style={{

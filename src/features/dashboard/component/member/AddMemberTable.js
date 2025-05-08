@@ -3,7 +3,7 @@ import { IconButton, Paper } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const AddMemberTable = ({ rows, handleEdit, handleDelete }) => {
+export const AddMemberTable = ({ rows, handleEdit, handleDelete, loading }) => {
   const columns = [
     { field: "id", headerName: "Sl.No", width: 55 },
     { field: "pastorName", headerName: "Name", width: 70 },
@@ -29,15 +29,30 @@ export const AddMemberTable = ({ rows, handleEdit, handleDelete }) => {
   ];
 
   const paginationModel = { page: 0, pageSize: 5 };
+
   return (
-    <Paper sx={{ height: 400, width: "100%", maxWidth: "1150px"}}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        sx={{ border: 0 }}
-      />
+    <Paper sx={{ height: 400, width: "100%", minWidth: "1130px" }}>
+      {loading ? (
+        <p
+          style={{
+            height: 400,
+            minWidth: "1150px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          Loading...
+        </p>
+      ) : (
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{ pagination: { paginationModel } }}
+          pageSizeOptions={[5, 10]}
+          sx={{ border: 0 }}
+        />
+      )}
     </Paper>
   );
 };

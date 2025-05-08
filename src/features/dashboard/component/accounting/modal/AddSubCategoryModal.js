@@ -1,6 +1,8 @@
 import { Modal, Paper, TextField, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import CloseIcon from '@mui/icons-material/Close';
+
 
 export const AddSubCategoryModal = ({
   open,
@@ -55,7 +57,7 @@ export const AddSubCategoryModal = ({
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open}>
       <Paper
         style={{
           position: "absolute",
@@ -72,7 +74,20 @@ export const AddSubCategoryModal = ({
           gap: "24px",
         }}
       >
-        <h2>{subCategory ? "Edit Category" : "Add New Sub-Category"}</h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h2>{subCategory ? "Edit Category" : "Add New Sub-Category"}</h2>
+          <CloseIcon
+            sx={{ cursor: "pointer" }}
+            color="error"
+            onClick={handleClose}
+          />
+        </div>
         <Formik
           initialValues={{
             categoryTitle: "",
