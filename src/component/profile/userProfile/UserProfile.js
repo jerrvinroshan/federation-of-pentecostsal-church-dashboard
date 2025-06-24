@@ -4,13 +4,15 @@ import { Field } from "formik";
 import { FormInputField } from "./form/FormInputField";
 import { FormTextArea } from "./form/FormTextArea";
 
-import profileImg from "../../../assets/image/profileppic.png"; 
+import profileImg from "../../../assets/image/profileppic.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setProfilePic } from "../../../store/member/profileSlice";
 
 export const UserProfile = ({ values, handleChange, errors }) => {
- 
   const [image, setImage] = useState(profileImg);
 
-  
+  const profileImage = useSelector((state) => state.profile.user.profilePic);
+  const dispatch = useDispatch();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -29,7 +31,7 @@ export const UserProfile = ({ values, handleChange, errors }) => {
         <div className="userprofile__profileimagecontainer">
           <img
             className="useProfile__profileimage--img"
-            src={image}
+            src={profileImage}
             alt="User Profile"
           />
           <Button
