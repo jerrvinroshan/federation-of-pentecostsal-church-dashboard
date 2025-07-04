@@ -1,10 +1,11 @@
 import axios from "axios";
+import {base_URL} from "../utils/Setting"
 
-const API_BASE_URL = "https://67f75c3342d6c71cca64d137.mockapi.io/trial";
 
 export const getUserProfile = async (userName) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}?userName=${userName}`);
+    const response = await axios.get(`${base_URL}/trial?userName=${userName}`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error("Error fetching user profile:", error);
@@ -15,7 +16,7 @@ export const getUserProfile = async (userName) => {
 export const updateUserProfile = async (userName, profileData) => {
   try {
     const response = await axios.put(
-      `${API_BASE_URL}?userName=${userName}`,
+      `${base_URL}/trial?userName=${userName}`,
       profileData
     );
     return response.data;

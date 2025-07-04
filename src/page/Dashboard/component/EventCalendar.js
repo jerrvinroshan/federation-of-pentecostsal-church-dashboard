@@ -28,7 +28,7 @@ export const EventCalendar = () => {
   };
 
   const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
+  // const month = currentDate.getMonth();
   const daysInMonth = getDay(currentDate);
 
   const handleTodayClick = () => {
@@ -79,7 +79,7 @@ export const EventCalendar = () => {
             }}
           >
             <div style={{ display: "flex", gap: "12px" }}>
-              <a>
+              <a href="#">
                 <ExpandLessIcon
                   onClick={handlePreviousMonth}
                   style={{
@@ -90,7 +90,7 @@ export const EventCalendar = () => {
                   }}
                 />
               </a>
-              <a>
+              <a href="#">
                 <ExpandLessIcon
                   onClick={handleNextMonth}
                   style={{
@@ -129,7 +129,7 @@ export const EventCalendar = () => {
                     className="day"
                     onClick={() => handleDateSelect(day)}
                   >
-                    <p className={`${isToday(day) ? "today" : ""} ${isSelected ? "selected" : ""}`}>
+                    <p className={`${isToday(day) ? "today" : ""} ${isSelected ? "selected" : "date"}`}>
                       {day.getDate()}
                     </p>
                   </div>

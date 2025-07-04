@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "../layout/AppLayout";
 import { MainLayout } from "../layout/MainLayout";
-import { LoginDashboard } from "../component/LoginDashboard";
-import Dashboard from "../page/Dashboard";
+import { LoginDashboard } from "../page/LoginDashboard";
+import Dashboard from "../page/Dashboard/Dashboard";
 import AddZone from "../page/AddZone";
 import AddMember from "../page/AddMember";
 import AddCategory from "../page/Accounting/AddCategory";

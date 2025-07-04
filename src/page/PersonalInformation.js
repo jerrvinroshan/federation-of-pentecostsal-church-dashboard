@@ -6,7 +6,6 @@ import { Qualification } from "../component/profile/personal-info/Qualification"
 import { ChurchDetails } from "../component/profile/personal-info/ChurchDetails";
 import { ChurchProperty } from "../component/profile/personal-info/ChurchProperty";
 
-
 const PersonalInformation = () => {
   const [isPersonalInformation, setIsPersonalInformation] = useState(true);
   const [isEducationalQualification, setIsEducationalQualification] =
@@ -42,7 +41,6 @@ const PersonalInformation = () => {
     setIsChurchProperty(true);
   };
   const handleClickNext = () => {
-    
     if (isPersonalInformation) {
       setIsPersonalInformation(false);
       setIsEducationalQualification(true);

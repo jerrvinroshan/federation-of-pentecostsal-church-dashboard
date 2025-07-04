@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { AddMemberTable } from "../features/dashboard/component/member/AddMemberTable";
-import { AddMenuMember } from "../features/dashboard/component/member/AddMenuMember";
-import { memberData } from "../features/dashboard/data/memberData/memberData";
-import AddMemberProfileModal from "../features/dashboard/component/member/AddMemberProfileModal";
+import { AddMemberTable } from "./Dashboard/component/member/AddMemberTable";
+import { AddMenuMember } from "./Dashboard/component/member/AddMenuMember";
+// import { memberData } from "./Dashboard/data/memberData/memberData";
+import AddMemberProfileModal from "./Dashboard/component/member/AddMemberProfileModal";
 import { useDispatch, useSelector } from "react-redux";
 // import dayjs from "dayjs";
 import {

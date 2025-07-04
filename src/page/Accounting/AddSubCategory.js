@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { AddSubCategoryTable } from "../../features/dashboard/component/accounting/AddSubCategoryTable";
-import { AddMenuSubCategory } from "../../features/dashboard/component/accounting/AddMenuSubCategory";
-import { subCategoryData } from "../../features/dashboard/data/accountingData/subCategoryData";
-import { AddSubCategoryModal } from "../../features/dashboard/component/accounting/modal/AddSubCategoryModal";
+import { AddSubCategoryTable } from "../Dashboard/component/accounting/AddSubCategoryTable";
+import { AddMenuSubCategory } from "../Dashboard/component/accounting/AddMenuSubCategory";
+import { subCategoryData } from "../Dashboard/data/accountingData/subCategoryData";
+import { AddSubCategoryModal } from "../Dashboard/component/accounting/modal/AddSubCategoryModal";
 
 const AddSubCategory = () => {
    const [subCategorys, setSubCategorys] = useState(subCategoryData);

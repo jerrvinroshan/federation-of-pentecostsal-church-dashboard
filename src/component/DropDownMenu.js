@@ -23,6 +23,10 @@ export const DropDownMenu = () => {
     textTransform: "capitalize",
     fontWeight: "400",
   };
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <div className="dropdownmenu__backgroundColor">
@@ -30,7 +34,7 @@ export const DropDownMenu = () => {
         <Button style={styleBtn} type="button" fullWidth onClick={Profileopen}>
           Profile
         </Button>
-        <Button style={styleBtn} onClick={() => navigate("/")} fullWidth>
+        <Button style={styleBtn} onClick={handleLogout} fullWidth>
           Log out
         </Button>
       </div>

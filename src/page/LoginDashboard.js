@@ -29,10 +29,13 @@ export const LoginDashboard = () => {
 
     try {
       await LoginSchma.validate(loginData, { abortEarly: false });
-      
+
       // Simulate an API call to check user credentials
       const userList = await getUserProfile(userName);
       const user = userList[0];
+      console.log(user);
+      localStorage.setItem("userName", JSON.stringify(user.userName));
+      localStorage.setItem("authToken", JSON.stringify(user.token));
       if (!user) {
         setError({ userName: "User not found" });
         return;
@@ -42,7 +45,11 @@ export const LoginDashboard = () => {
         return;
       }
       setError("");
-      navigate("/dashboard");
+      if (!user.token) {
+        navigate("/");
+      } else {
+        navigate("/dashboard");
+      }
       dispatch(setUser(user));
       console.log("Login successful", setUser(user));
     } catch (error) {

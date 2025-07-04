@@ -1,11 +1,11 @@
 import axios from "axios";
+import { base_URL } from "../utils/Setting";
 
-const API_URL = "https://67f75c3342d6c71cca64d137.mockapi.io/try";
 
 export const fetchMemberAPI = async () => {
   const options = {
     method: "GET",
-    url: API_URL,
+    url: `${base_URL}/try`,
   };
   try {
     const res = await axios.request(options);
@@ -18,7 +18,7 @@ export const fetchMemberAPI = async () => {
 export const postMemberAPI = async (payload) => {
   const options = {
     method: "POST",
-    url: API_URL,
+    url: `${base_URL}/try`,
     data: payload,
   };
   try {
@@ -32,7 +32,7 @@ export const postMemberAPI = async (payload) => {
 export const deleteMemberAPI = async (id) => {
   const options = {
     method: "DELETE",
-    url: `${API_URL}/${id}`,
+    url: `${base_URL}/try/${id}`,
   };
   try {
     const res = await axios.request(options);
@@ -46,7 +46,7 @@ export const putMemberAPI = async (payload) => {
   const { id, ...data } = payload;
   const options = {
     method: "PUT",
-    url: `${API_URL}/${id}`,
+    url: `${base_URL}/try/${id}`,
     data: data,
   };
   try {

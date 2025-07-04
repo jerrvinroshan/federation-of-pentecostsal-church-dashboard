@@ -188,6 +188,14 @@
   display: flex;
   justify-content: center;
 }
+
+.date{
+    padding: 2px;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+
+}
 .selected {
   padding: 2px;
   color: white;
@@ -198,6 +206,7 @@
   font-size: 12px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .recent-member-link {
@@ -414,4 +423,9 @@
 }
 .addMemberPreview__Content > span{
   font-size: 14px;
+}
+
+.css-1ju0qey-MuiResponsiveChart-container{
+  max-width: 236px;
+  display: contents !important;
 }

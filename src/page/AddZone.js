@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { AddMenuZone } from "../features/dashboard/component/zone/AddMenuZone";
-import { AddZoneTable } from "../features/dashboard/component/zone/AddZoneTable";
-import { AddZoneModal } from "../features/dashboard/component/zone/AddZoneModal";
-// import { zoneData } from "../features/dashboard/data/zoneData/zoneData";
-import zoneData from "../features/dashboard/data/zoneData/zoneData.json";
+import { AddMenuZone } from "./Dashboard/component/zone/AddMenuZone";
+import { AddZoneTable } from "./Dashboard/component/zone/AddZoneTable";
+import { AddZoneModal } from "./Dashboard/component/zone/AddZoneModal";
+// import { zoneData } from "./Dashboard/data/zoneData/zoneData";
+import zoneData from "./Dashboard/data/zoneData/zoneData.json";
 import { useDispatch } from "react-redux";
 import { addZone } from "../store/zone/zoneSlice";
 

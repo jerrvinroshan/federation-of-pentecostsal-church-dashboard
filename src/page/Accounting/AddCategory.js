@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { AddCategoryTable } from "../../features/dashboard/component/accounting/AddCategoryTable";
-import { AddMenuCategory } from "../../features/dashboard/component/accounting/AddMenuCategory";
-import { categoryData } from "../../features/dashboard/data/accountingData/categoryData";
-import { AddCategoryModal } from "../../features/dashboard/component/accounting/modal/AddCategoryModal";
+import { AddCategoryTable } from "../Dashboard/component/accounting/AddCategoryTable";
+import { AddMenuCategory } from "../Dashboard/component/accounting/AddMenuCategory";
+import { categoryData } from "../Dashboard/data/accountingData/categoryData";
+import { AddCategoryModal } from "../Dashboard/component/accounting/modal/AddCategoryModal";
 
 const AddCategory = () => {
   const [categorys, setCategorys] = useState(categoryData);

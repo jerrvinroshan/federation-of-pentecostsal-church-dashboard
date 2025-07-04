@@ -1,5 +1,5 @@
-import { BillingHistoryTable } from "../features/dashboard/component/configuration/BillingHistoryTable";
-import { PaymentCard } from "../features/dashboard/component/configuration/PaymentCard";
+import { BillingHistoryTable } from "./Dashboard/component/configuration/BillingHistoryTable";
+import { PaymentCard } from "./Dashboard/component/configuration/PaymentCard";
 
 const AddPaymentMethod = () => {
   return (

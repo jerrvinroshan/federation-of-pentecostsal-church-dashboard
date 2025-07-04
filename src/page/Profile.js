@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { use, useState } from "react";
+import {useState } from "react";
 import { UserProfile } from "../component/profile/userProfile/UserProfile";
 import { ChangePassword } from "../component/profile/userProfile/ChangePassword";
 import { Button, Modal, Paper } from "@mui/material";
@@ -78,21 +78,22 @@ export const Profile = ({ isProfileOpen, handleClose }) => {
           </div>
         </div>
         <Formik
-          initialValues={userData
-          //   {
-          //   //UserProfile
-          //   firstName: "",
-          //   lastName: "",
-          //   emailId: "",
-          //   phoneNo: "",
-          //   address: "",
-          //   zone: "",
-          //   // ChangePassword
-          //   oldPassword: "",
-          //   newPassword: "",
-          //   confirmPassword: "",
-          // }
-        }
+          initialValues={
+            userData
+            //   {
+            //   //UserProfile
+            //   firstName: "",
+            //   lastName: "",
+            //   emailId: "",
+            //   phoneNo: "",
+            //   address: "",
+            //   zone: "",
+            //   // ChangePassword
+            //   oldPassword: "",
+            //   newPassword: "",
+            //   confirmPassword: "",
+            // }
+          }
           validationSchema={isUserProfile ? userProfileSchema : settingSchema}
           onSubmit={(values) => console.log(`First Name: ${values.firstName}`)}
           style={{

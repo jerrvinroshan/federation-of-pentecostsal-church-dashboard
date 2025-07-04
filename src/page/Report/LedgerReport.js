@@ -1,5 +1,5 @@
-import { AddEditMenuLedgerReport } from "../../features/dashboard/component/report/AddEditMenuLedgerReport";
-import { LedgerReportTable } from "../../features/dashboard/component/report/LedgerReportTable";
+import { AddEditMenuLedgerReport } from "../Dashboard/component/report/AddEditMenuLedgerReport";
+import { LedgerReportTable } from "../Dashboard/component/report/LedgerReportTable";
 
 const LedgerReport = () => {
   return (
